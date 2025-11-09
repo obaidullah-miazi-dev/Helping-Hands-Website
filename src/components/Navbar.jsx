@@ -8,10 +8,10 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user,logOut } = use(AuthContext);
+  const { user, logOut } = use(AuthContext);
   console.log(user);
 
-   const handleLogOut = () => {
+  const handleLogOut = () => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -56,7 +56,6 @@ const Navbar = () => {
         </li>
       </NavLink>
 
-
       <NavLink to="/upcomingEvents">
         <li className="hover:text-primary transition cursor-pointer font-semibold text-lg">
           Upcoming Events
@@ -69,7 +68,10 @@ const Navbar = () => {
   const buttons = (
     <>
       {user ? (
-        <button onClick={handleLogOut} className="px-5 py-2.5 hover-eff cursor-pointer bg-gradient transition flex items-center gap-2 text-white font-semibold rounded-full">
+        <button
+          onClick={handleLogOut}
+          className="px-5 py-2.5 hover-eff cursor-pointer bg-gradient transition flex items-center gap-2 text-white font-semibold rounded-full"
+        >
           Log Out
         </button>
       ) : (
@@ -109,7 +111,31 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-4">
             {user && (
               <div>
-                <img src={user?.photoURL} alt={user?.displayName} className="rounded-full bg-secondary w-12 h-12" />
+                
+                <div className="dropdown dropdown-end">
+                  <div tabIndex={0} role="button" className="mt-3">
+                    <img
+                  src={user?.photoURL}
+                  alt={user?.displayName}
+                  className="rounded-full bg-secondary w-12 h-12"
+                />
+                  </div>
+                  <ul
+                    tabIndex="-1"
+                    className="dropdown-content menu bg-white rounded-box z-10 w-52 p-3 font-semibold  shadow-sm  py-3"
+                  >
+                   <NavLink > 
+                    <li  className="hover:bg-secondary p-2 rounded-xl">
+                      Create an Event
+                    </li>
+                   </NavLink>
+                   <NavLink>
+                    <li className="hover:bg-secondary p-2 rounded-xl">
+                      Joined Events
+                    </li>
+                   </NavLink>
+                  </ul>
+                </div>
               </div>
             )}
             {buttons}

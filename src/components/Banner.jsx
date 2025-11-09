@@ -47,7 +47,7 @@ const Banner = () => {
               className="mySwiper"
             >
               {images.map((image) => (
-                <SwiperSlide>
+                <SwiperSlide className="cursor-grab">
                   {" "}
                   <img src={image.img} alt="banner image" />{" "}
                 </SwiperSlide>
