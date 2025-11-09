@@ -1,5 +1,6 @@
 import { CircleCheckBig, CircleDot, LocateIcon, MapPin } from "lucide-react";
 import React from "react";
+import { NavLink } from "react-router";
 
 const EventCard = ({ events }) => {
   console.log(events);
@@ -27,12 +28,14 @@ const EventCard = ({ events }) => {
             <MapPin width={18} /> {events.location}
           </p>
 
-        <button
+        <NavLink to={`/eventDetails/${events._id}`}>
+            <button
           className="bg-gradient w-full hover-eff cursor-pointer
              rounded-2xl py-2 px-4 text-white font-semibold mt-3"
         >
           View Details
         </button>
+        </NavLink>
       </div>
     </div>
   );

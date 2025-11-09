@@ -1,0 +1,116 @@
+import React, { useEffect, useState } from "react";
+import useAxios from "../Hooks/useAxios";
+import { useParams } from "react-router";
+import Container from "./Container";
+import { Calendar, CircleCheckBig, CircleDot, MapPin } from "lucide-react";
+
+const EventDetails = () => {
+  const [eventDetails, setEventDetails] = useState(null);
+  const { id } = useParams();
+  console.log(eventDetails);
+  const currentDate = new Date();
+
+  const axios = useAxios();
+  useEffect(() => {
+    axios
+      .get(`/eventDetails/${id}`)
+      .then((data) => setEventDetails(data.data))
+      .catch((error) => {
+        alert(error.code);
+      });
+  }, [axios, id]);
+
+  return (
+    <>
+      <Container>
+        <div className="flex flex-col-reverse lg:flex-row gap-18 justify-center items-center mt-32">
+          {/* content  */}
+          <div className="space-y-3 flex-2">
+            <h2 className="lg:text-7xl text-4xl font-bold text-primary">
+              {eventDetails?.title}
+            </h2>
+
+            <div className="flex gap-3 items-center">
+              <img
+                className="lg:w-10 lg:h-10 w-8 h-8 rounded-full bg-secondary"
+                src={eventDetails?.creator_img}
+                alt={eventDetails?.creator_name}
+              />
+              <p className="font-bold lg:text-2xl ">
+                Hosted By{" "}
+                <span className="text-primary">
+                  {eventDetails?.creator_name}
+                </span>
+              </p>
+            </div>
+
+            <div className="border-2 border-secondary p-5 rounded-2xl mt-12">
+              <p className="lg:font-semibold lg:text-xl ">
+                <span className="font-bold text-primary">About Event : </span>
+                {eventDetails?.description}
+              </p>
+
+              <div className="flex flex-col lg:flex-row gap-4 mt-5">
+                <p className="bg-[#d2efa7] py-1.5 px-5 rounded-full text-primary font-semibold">
+                  {eventDetails?.event_type}
+                </p>
+                {new Date(eventDetails?.event_date) > currentDate ? (
+                  <p className="bg-orange-100 py-1.5 px-2 rounded-full
+                   text-orange-500 font-semibold flex gap-2 items-center">
+                    <CircleDot width={18} className="animate-ping" /> Upcoming
+                  </p>
+                ) : (
+                  <p className="flex items-center gap-2 bg-[#d2efa7]
+                   py-1.5 px-5 rounded-full text-primary font-semibold">
+                    {" "}
+                    <CircleCheckBig width={18} /> Completed
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div>
+              {new Date(eventDetails?.event_date) < currentDate ? 
+                <p></p>
+              : 
+                <button
+                className="bg-gradient rounded-xl text-lg cursor-pointer
+               py-2.5 px-5 text-white hover-eff font-semibold w-full"
+              >
+                Join Now
+              </button>}
+              
+            </div>
+          </div>
+
+          {/* image  */}
+          <div className="flex-1">
+            <img
+              src={eventDetails?.event_img}
+              alt={eventDetails?.title}
+              className="h-96 rounded-2xl w-full"
+            />
+            <div className="border-2 border-secondary p-5 rounded-2xl mt-8 space-y-3">
+              <p className="flex items-center gap-2 font-bold">
+                <Calendar />{" "}
+                {new Date(eventDetails?.event_date).toLocaleDateString(
+                  "en-US",
+                  {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  }
+                )}
+              </p>
+              <p className="flex items-center gap-2 font-bold">
+                <MapPin></MapPin> {eventDetails?.location}
+              </p>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </>
+  );
+};
+
+export default EventDetails;
