@@ -3,10 +3,43 @@ import React, { use, useState } from "react";
 import Container from "./Container";
 import { Link, NavLink } from "react-router";
 import { Menu, X } from "lucide-react";
-import logo from '../assets/Images/Logo.png'
+import logo from "../assets/Images/Logo.png";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user,logOut } = use(AuthContext);
+  console.log(user);
 
+   const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Log Out",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+          .then((res) => {
+            // console.log(res)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "loged out successfully",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    });
+  };
 
   // all nav links is here
   const Links = (
@@ -28,14 +61,11 @@ const Navbar = () => {
   // buttons with user validation
   const buttons = (
     <>
-      
-        {/* <button
-          
-          className="px-5 py-2.5 hover-eff cursor-pointer bg-gradient transition flex items-center gap-2 text-white font-semibold rounded-full"
-        >
+      {user ? (
+        <button onClick={handleLogOut} className="px-5 py-2.5 hover-eff cursor-pointer bg-gradient transition flex items-center gap-2 text-white font-semibold rounded-full">
           Log Out
-        </button> */}
-     
+        </button>
+      ) : (
         <div className="flex gap-3 items-center">
           <Link to="/login">
             <button className="px-5 py-2.5 hover-eff cursor-pointer bg-gradient transition flex items-center gap-2 text-white font-semibold rounded-full">
@@ -48,7 +78,7 @@ const Navbar = () => {
             </button>
           </Link>
         </div>
-      
+      )}
     </>
   );
 
@@ -69,7 +99,14 @@ const Navbar = () => {
           </ul>
 
           {/* button  */}
-          <div className="hidden md:flex items-center gap-4">{buttons}</div>
+          <div className="hidden md:flex items-center gap-4">
+            {user && (
+              <div>
+                <img src={user?.photoURL} alt={user?.displayName} className="rounded-full bg-secondary w-12 h-12" />
+              </div>
+            )}
+            {buttons}
+          </div>
 
           <button
             onClick={() => setOpen(!open)}
