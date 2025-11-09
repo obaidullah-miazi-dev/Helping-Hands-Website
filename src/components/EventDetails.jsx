@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import useAxios from "../Hooks/useAxios";
 import { useParams } from "react-router";
 import Container from "./Container";
 import { Calendar, CircleCheckBig, CircleDot, MapPin } from "lucide-react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const EventDetails = () => {
   const [eventDetails, setEventDetails] = useState(null);
   const { id } = useParams();
-  console.log(eventDetails);
+  const {user} = use(AuthContext)
+  // console.log(eventDetails);
   const currentDate = new Date();
 
   const axios = useAxios();
@@ -19,6 +21,24 @@ const EventDetails = () => {
         alert(error.code);
       });
   }, [axios, id]);
+
+
+  const handleJoinIn = () =>{
+    const joinInEventDetails = {
+      title: eventDetails.title,
+      description: eventDetails.description,
+      image:eventDetails.event_img,
+      event_id: eventDetails._id,
+      person_name: user.displayName,
+      person_img: user.photoURL,
+      person_email: user.email
+    }
+    axios.post('/joinInEvent',joinInEventDetails)
+    .then(data => console.log(data))
+    .catch(error=>{
+      console.log(error)
+    })
+  }
 
   return (
     <>
@@ -73,7 +93,7 @@ const EventDetails = () => {
               {new Date(eventDetails?.event_date) < currentDate ? 
                 <p></p>
               : 
-                <button
+                <button onClick={handleJoinIn}
                 className="bg-gradient rounded-xl text-lg cursor-pointer
                py-2.5 px-5 text-white hover-eff font-semibold w-full"
               >
