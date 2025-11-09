@@ -7,7 +7,10 @@ import Container from "../components/Container";
 const JoinedEvents = () => {
   const axios = useAxios();
   const { user } = use(AuthContext);
-  const [joinedEvent, setJoinedEvents] = useState();
+  const [joinedEvent, setJoinedEvents] = useState([]);
+
+
+
   useEffect(() => {
     axios
       .get(`/joinedEvents?email=${user?.email}`)
@@ -16,6 +19,21 @@ const JoinedEvents = () => {
         console.log(error);
       });
   }, [axios, user]);
+
+const handleCancelJoin= (id)=>{
+    alert('are you sure to cancel')
+    axios.delete(`/joinedEvents/${id}`)
+    .then(data => {
+        if(data.data.deletedCount){
+            const remainingEvents = joinedEvent.filter(event => event._id !== id)
+            setJoinedEvents(remainingEvents)
+        }
+    })
+    .catch(error =>{
+        console.log(error)
+    })
+}
+
 //   console.log(joinedEvent);
   return (
     <Container>
@@ -73,11 +91,11 @@ const JoinedEvents = () => {
                 </button>
               </NavLink>
 
-              <button
+              <button onClick={()=>handleCancelJoin(events?._id)}
                 className="bg-red-100 text-red-600 py-1.5 px-4
                rounded-full font-semibold hover:bg-red-200 cursor-pointer"
               >
-                Remove
+                Cancel Join
               </button>
             </div>
             </div>

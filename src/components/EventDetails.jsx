@@ -52,8 +52,8 @@ const EventDetails = () => {
 
             <div className="flex gap-3 items-center">
               <img
-                className="lg:w-10 lg:h-10 w-8 h-8 rounded-full bg-secondary"
-                src={eventDetails?.creator_img}
+                className="lg:w-10 lg:h-10 w-8 h-8 rounded-full bg-secondary mt-5"
+                src={eventDetails?.creator_image}
                 alt={eventDetails?.creator_name}
               />
               <p className="font-bold lg:text-2xl ">
@@ -64,7 +64,7 @@ const EventDetails = () => {
               </p>
             </div>
 
-            <div className="border-2 border-secondary p-5 rounded-2xl mt-12">
+            <div className="border-2 border-secondary p-5 rounded-2xl mt-8">
               <p className="lg:font-semibold lg:text-xl ">
                 <span className="font-bold text-primary">About Event : </span>
                 {eventDetails?.description}

@@ -125,7 +125,7 @@ const Navbar = () => {
                     className="dropdown-content menu bg-white rounded-box
                      z-10 w-52 p-3 font-semibold  shadow-sm  py-3"
                   >
-                   <NavLink > 
+                   <NavLink to='/createEvent'> 
                     <li  className="hover:bg-secondary p-2 rounded-xl">
                       Create an Event
                     </li>
