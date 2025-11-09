@@ -122,14 +122,15 @@ const Navbar = () => {
                   </div>
                   <ul
                     tabIndex="-1"
-                    className="dropdown-content menu bg-white rounded-box z-10 w-52 p-3 font-semibold  shadow-sm  py-3"
+                    className="dropdown-content menu bg-white rounded-box
+                     z-10 w-52 p-3 font-semibold  shadow-sm  py-3"
                   >
                    <NavLink > 
                     <li  className="hover:bg-secondary p-2 rounded-xl">
                       Create an Event
                     </li>
                    </NavLink>
-                   <NavLink>
+                   <NavLink to='/joinedEvents'>
                     <li className="hover:bg-secondary p-2 rounded-xl">
                       Joined Events
                     </li>

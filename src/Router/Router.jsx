@@ -6,6 +6,7 @@ import Login from "../Pages/Login"
 import Register from "../Pages/Register"
 import UpcomingEvents from "../Pages/UpcomingEvents"
 import EventDetails from "../components/EventDetails"
+import JoinedEvents from "../Pages/JoinedEvents"
 export const router =createBrowserRouter([
     {
         path:'/',
@@ -34,6 +35,10 @@ export const router =createBrowserRouter([
             {
                 path: '/eventDetails/:id',
                 Component: EventDetails
+            },
+            {
+                path:'/joinedEvents',
+                Component: JoinedEvents
             }
         ]
     }
