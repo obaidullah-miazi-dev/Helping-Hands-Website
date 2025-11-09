@@ -1,26 +1,31 @@
-import { LocateIcon, MapPin } from "lucide-react";
+import { CircleCheckBig, CircleDot, LocateIcon, MapPin } from "lucide-react";
 import React from "react";
 
 const EventCard = ({ events }) => {
   console.log(events);
+  const currentDate = new Date()
   return (
     <div>
       <div className="p-5 border-2 border-secondary rounded-2xl h-full space-y-3">
         <img
-          className="rounded-2xl h-[400px]"
+          className="rounded-2xl h-[400px] w-full"
           src={events?.event_img}
           alt={events.title}
         />
         <h2 className="text-primary font-bold text-3xl">{events.title}</h2>
         <p className="line-clamp-3 font-semibold">{events.description}</p>
-        <div className="flex justify-between gap-5">
+        <div className="flex flex-col md:flex-row gap-4">
           <p className="bg-[#d2efa7] py-1.5 px-5 rounded-full text-primary font-semibold">
             {events.event_type}
           </p>
-          <p className="flex flex-2 items-center gap-2 bg-[#d2efa7] py-1 px-2 rounded-full text-primary font-semibold">
-            <MapPin /> {events.location}
-          </p>
+          {events.event_date<currentDate ?
+           <p className="bg-orange-100 py-1.5 px-2 rounded-full text-orange-500 font-semibold"><CircleDot width={18}/> Upcoming</p>:
+            <p className="flex items-center gap-2 bg-[#d2efa7] py-1.5 px-5 rounded-full text-primary font-semibold"> <CircleCheckBig width={18}/> Completed</p>}
         </div>
+
+        <p className="flex items-center gap-2 bg-[#d2efa7] py-1.5 px-2 rounded-full text-primary font-semibold mt-4">
+            <MapPin width={18} /> {events.location}
+          </p>
 
         <button
           className="bg-gradient w-full hover-eff cursor-pointer
