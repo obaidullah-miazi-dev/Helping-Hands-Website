@@ -6,20 +6,20 @@ const EventCard = ({ events }) => {
   const currentDate = new Date()
   return (
     <div>
-      <div className="p-5 border-2 border-secondary rounded-2xl h-full space-y-3">
+      <div className="p-5 border-2 border-secondary rounded-2xl h-full space-y-3 flex flex-col justify-between">
         <img
           className="rounded-2xl h-[400px] w-full"
           src={events?.event_img}
           alt={events.title}
         />
-        <h2 className="text-primary font-bold text-3xl">{events.title}</h2>
+        <h2 className="text-primary font-bold text-3xl line-clamp-2">{events.title}</h2>
         <p className="line-clamp-3 font-semibold">{events.description}</p>
         <div className="flex flex-col md:flex-row gap-4">
           <p className="bg-[#d2efa7] py-1.5 px-5 rounded-full text-primary font-semibold">
             {events.event_type}
           </p>
-          {events.event_date<currentDate ?
-           <p className="bg-orange-100 py-1.5 px-2 rounded-full text-orange-500 font-semibold"><CircleDot width={18}/> Upcoming</p>:
+          {new Date(events.event_date)>currentDate ?
+           <p className="bg-orange-100 py-1.5 px-2 rounded-full text-orange-500 font-semibold flex gap-2 items-center"><CircleDot width={18} className="animate-ping"/> Upcoming</p>:
             <p className="flex items-center gap-2 bg-[#d2efa7] py-1.5 px-5 rounded-full text-primary font-semibold"> <CircleCheckBig width={18}/> Completed</p>}
         </div>
 

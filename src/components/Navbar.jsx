@@ -55,6 +55,13 @@ const Navbar = () => {
           Events
         </li>
       </NavLink>
+
+
+      <NavLink to="/upcomingEvents">
+        <li className="hover:text-primary transition cursor-pointer font-semibold text-lg">
+          Upcoming Events
+        </li>
+      </NavLink>
     </>
   );
 
