@@ -8,6 +8,7 @@ import UpcomingEvents from "../Pages/UpcomingEvents"
 import EventDetails from "../components/EventDetails"
 import JoinedEvents from "../Pages/JoinedEvents"
 import CreateEvent from "../Pages/CreateEvent"
+import ManageEvents from "../Pages/ManageEvents"
 export const router =createBrowserRouter([
     {
         path:'/',
@@ -44,6 +45,10 @@ export const router =createBrowserRouter([
             {
                 path: '/createEvent',
                 Component: CreateEvent
+            },
+            {
+                path: '/manageEvents',
+                Component: ManageEvents
             }
         ]
     }

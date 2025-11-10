@@ -135,6 +135,13 @@ const Navbar = () => {
                       Joined Events
                     </li>
                    </NavLink>
+
+
+                   <NavLink to='/manageEvents'>
+                    <li className="hover:bg-secondary p-2 rounded-xl">
+                      Manage Events
+                    </li>
+                   </NavLink>
                   </ul>
                 </div>
               </div>
