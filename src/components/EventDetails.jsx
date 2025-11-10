@@ -9,10 +9,14 @@ const EventDetails = () => {
   const [eventDetails, setEventDetails] = useState(null);
   const { id } = useParams();
   const {user} = use(AuthContext)
+   const [joinedEvent, setJoinedEvents] = useState([]);
   // console.log(eventDetails);
   const currentDate = new Date();
-
   const axios = useAxios();
+  console.log(joinedEvent);
+
+
+
   useEffect(() => {
     axios
       .get(`/eventDetails/${id}`)
@@ -23,7 +27,24 @@ const EventDetails = () => {
   }, [axios, id]);
 
 
+
+
+  useEffect(() => {
+      axios
+        .get(`/joinedEvents?email=${user?.email}`)
+        .then((data) => setJoinedEvents(data.data))
+        .catch((error) => {
+          console.log(error);
+        });
+    }, [axios, user]);
+
+
+
+    const alreadyJoined = joinedEvent?.some(event => event.event_id === id)
   const handleJoinIn = () =>{
+    if(alreadyJoined){
+      return alert('you have already joined in this event')
+    }
     const joinInEventDetails = {
       title: eventDetails.title,
       description: eventDetails.description,
@@ -34,7 +55,12 @@ const EventDetails = () => {
       person_email: user.email
     }
     axios.post('/joinInEvent',joinInEventDetails)
-    .then(data => console.log(data))
+    .then(data => {
+      if(data.data.insertedId){
+       setJoinedEvents([...joinedEvent,joinInEventDetails])
+        alert('joined successfully')
+      }
+    })
     .catch(error=>{
       console.log(error)
     })
@@ -94,10 +120,11 @@ const EventDetails = () => {
                 <p></p>
               : 
                 <button onClick={handleJoinIn}
-                className="bg-gradient rounded-xl text-lg cursor-pointer
-               py-2.5 px-5 text-white hover-eff font-semibold w-full"
+                disabled={alreadyJoined}
+                className={`${alreadyJoined ? 'cursor-not-allowed bg-gray-500': 'bg-gradient  cursor-pointer hover-eff'}  rounded-xl text-lg 
+               py-2.5 px-5 text-white  font-semibold w-full`}
               >
-                Join Now
+                {alreadyJoined?'Already Joined': 'Join Now'}
               </button>}
               
             </div>
