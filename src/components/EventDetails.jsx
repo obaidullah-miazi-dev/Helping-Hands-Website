@@ -76,9 +76,9 @@ const EventDetails = () => {
               {eventDetails?.title}
             </h2>
 
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-center mt-8">
               <img
-                className="lg:w-10 lg:h-10 w-8 h-8 rounded-full bg-secondary mt-5"
+                className="lg:w-10 lg:h-10 w-8 h-8 rounded-full bg-secondary"
                 src={eventDetails?.creator_image}
                 alt={eventDetails?.creator_name}
               />

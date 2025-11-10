@@ -14,6 +14,7 @@ const ManageEvents = () => {
   const [myEvent, setMyEvents] = useState([]);
   const [eventDate, setEventDate] = useState(null);
   const [editId, setEditId] = useState(null);
+  const [eventData, setEventData] = useState(null);
 
   useEffect(() => {
     axios
@@ -58,6 +59,12 @@ const ManageEvents = () => {
       .patch(`/myEvents/${editId}`, formData)
       .then((data) => {
         if (data.data.modifiedCount) {
+          axios
+            .get(`/myEvents?email=${user?.email}`)
+            .then((data) => setMyEvents(data.data))
+            .catch((error) => {
+              console.log(error);
+            });
           alert("updated successfully");
         }
       })
@@ -66,14 +73,20 @@ const ManageEvents = () => {
       });
     e.target.reset();
     document.getElementById("my_modal").close();
+  };
 
-     axios
-      .get(`/myEvents?email=${user?.email}`)
-      .then((data) => setMyEvents(data.data))
+  const handleModalOpen = (id) => {
+    setEditId(id);
+    document.getElementById("my_modal").showModal();
+    axios
+      .get(`/eventDetails/${id}`)
+      .then((data) => setEventData(data.data))
       .catch((error) => {
-        console.log(error);
+        alert(error.code);
       });
   };
+
+  console.log(eventData);
 
   return (
     <Container>
@@ -135,10 +148,7 @@ const ManageEvents = () => {
                   <button
                     className="bg-green-500 hover:bg-green-600
                text-white text-sm px-4 py-2 rounded-full  sm:mt-0 w-full md:w-28 cursor-pointer"
-                    onClick={() => {
-                      setEditId(events._id);
-                      document.getElementById("my_modal").showModal();
-                    }}
+                    onClick={() => handleModalOpen(events?._id)}
                   >
                     Edit Event
                   </button>
@@ -170,7 +180,7 @@ const ManageEvents = () => {
                               </label>
                               <input
                                 type="text"
-                                defaultValue={events.title}
+                                defaultValue={eventData?.title}
                                 id="title"
                                 name="title"
                                 placeholder="Event Title"
@@ -224,7 +234,7 @@ const ManageEvents = () => {
                               type="url"
                               id="event_img"
                               name="event_img"
-                              defaultValue={events?.event_img}
+                              defaultValue={eventData?.event_img}
                               placeholder="https://..."
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
                               required
@@ -278,7 +288,7 @@ const ManageEvents = () => {
                                 type="tel"
                                 id="YourContact"
                                 name="contact"
-                                defaultValue={events?.creator_contact}
+                                defaultValue={eventData?.creator_contact}
                                 placeholder="Your Contact Number"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
                                 required
@@ -314,7 +324,7 @@ const ManageEvents = () => {
                                 type="text"
                                 id="location"
                                 name="location"
-                                defaultValue={events?.location}
+                                defaultValue={eventData?.location}
                                 placeholder="City, Country"
                                 className="w-full px-4 py-2 border border-gray-300
                  rounded-lg focus:ring-2 focus:ring-primary
@@ -329,7 +339,7 @@ const ManageEvents = () => {
                               </label>
                               <DatePicker
                                 wrapperClassName="w-full"
-                                value={events?.event_date}
+                                value={eventData?.event_date}
                                 selected={eventDate}
                                 onChange={(date) => setEventDate(date)}
                                 minDate={subDays(new Date(), -1)}
@@ -354,7 +364,7 @@ const ManageEvents = () => {
                             <textarea
                               id="description"
                               name="description"
-                              defaultValue={events?.description}
+                              defaultValue={eventData?.description}
                               rows={4}
                               placeholder="Write Your Event Details"
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition resize-none"

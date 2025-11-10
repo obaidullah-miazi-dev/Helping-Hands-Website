@@ -5,36 +5,72 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 export default function Register() {
-  const { googleLogIn, createUser, setLoading } = use(AuthContext);
+  const { googleLogIn, createUser, setLoading,setUser,updateUser } = use(AuthContext);
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    createUser(email, password)
-      .then((data) => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Account Created Successfully",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-        navigate("/login");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: errorCode,
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      });
-    setLoading(false);
-  };
+      const handleRegister = (e) => {
+        e.preventDefault()
+        // console.log(e.target);
+        const displayName = e.target.name.value
+        const photoURL = e.target.photo.value
+        const email = e.target.email.value
+        const password = e.target.password.value
+        const passValidationRegEx = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+        if (!passValidationRegEx.test(password)) {
+
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Password must contain at least 1 uppercase, 1 lowercase and 6 characters",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return
+        }
+        createUser(email, password)
+            .then(res => {
+                const user = res.user
+                updateUser({
+                    displayName, photoURL
+                })
+                    .then(() => {
+                        setUser({ ...user, displayName, photoURL })
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Account created successfully!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                    })
+                    .catch(error => {
+                        const err = error.code
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: { err },
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setUser(user)
+                    })
+            })
+            .catch(error => {
+                const err = error.code
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${err}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }).finally(()=>{navigate('/'),setLoading(false)})
+        
+
+
+    }
 
   const handleGoogleSignUp = () => {
     googleLogIn()
@@ -89,21 +125,21 @@ export default function Register() {
           </div>
 
           {/* Image URL */}
-          {/* <div>
+          <div>
             <label
-              htmlFor="imageUrl"
+              htmlFor="photoURL"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Image URL
+              Photo URL
             </label>
             <input
               type="url"
-              id="imageUrl"
-              name="imageUrl"
+              id="photoURL"
+              name="photo"
               placeholder="https://example.com/avatar.jpg"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
             />
-          </div> */}
+          </div>
 
           {/* Email */}
           <div>

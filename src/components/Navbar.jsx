@@ -115,9 +115,10 @@ const Navbar = () => {
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="mt-3">
                     <img
+                    title={user?.displayName}
                   src={user?.photoURL}
                   alt={user?.displayName}
-                  className="rounded-full bg-secondary w-12 h-12"
+                  className="rounded-full bg-secondary w-12 h-12 cursor-pointer"
                 />
                   </div>
                   <ul
