@@ -9,7 +9,7 @@ const EventCard = ({ events }) => {
     <div>
       <div className="p-5 border-2 border-secondary rounded-2xl h-full space-y-3 flex flex-col justify-between">
         <img
-          className="rounded-2xl h-[400px] w-full"
+          className="rounded-2xl h-[250px] w-full"
           src={events?.event_img}
           alt={events.title}
         />
