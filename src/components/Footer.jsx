@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Facebook,
-  Twitter,
   Instagram,
   Mail,
   MapPin,
@@ -9,6 +8,7 @@ import {
 } from "lucide-react";
 import { NavLink } from "react-router";
 import logo from "../assets/Images/Logo.png";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -40,7 +40,7 @@ const Footer = () => {
                 className="p-2 bg-[#d2efa7] rounded-full
                  hover:bg-primary hover:text-white transition"
               >
-                <Twitter size={18} />
+                <FaXTwitter size={18}/>
               </a>
               <a
                 href="#"
