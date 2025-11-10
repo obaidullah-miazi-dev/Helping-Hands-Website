@@ -1,5 +1,6 @@
 import Banner from "../components/Banner";
 import CompletedEvent from "../components/CompletedEvent";
+import Newsletter from "../components/Newsletter";
 import { Card, Carousel } from "../components/ui/apple-cards-carousel";
 
 const Home = () => {
@@ -80,14 +81,22 @@ const Home = () => {
 
       <div className="p-4">
         <h2
-          className="md:text-7xl text-3xl text-primary
-         font-bold  text-center mt-16 mb-8"
+          className="md:text-7xl text-4xl text-primary
+         font-bold  border-l-8 border-primary pl-3 ml-2 mb-8"
         >
           Event Gallery
         </h2>
-        <Carousel items={items} initialScroll={300}></Carousel>
+        <Carousel items={items} initialScroll={0}></Carousel>
       </div>
+
+
+      
+      <Newsletter></Newsletter>
+
+
+
     </div>
+
   );
 };
 

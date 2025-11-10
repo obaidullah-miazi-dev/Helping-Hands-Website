@@ -18,7 +18,7 @@ const Banner = () => {
     <>
       <Container>
         <div className="flex justify-between flex-col-reverse md:flex-row gap-12 mt-16">
-          <div className="bg-[#d2efa7] flex-1 rounded-2xl p-5 flex-col flex relative">
+          <div className="bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] flex-1 rounded-2xl p-5 flex-col flex relative">
             <h1 className="md:text-8xl text-5xl font-bold h-full inline text-primary mb-5 md:mb-0">
               Together,
               we create positive change.
