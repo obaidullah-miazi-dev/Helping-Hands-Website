@@ -43,7 +43,8 @@ const Newsletter = () => {
               <button
                 type="submit"
                 className="bg-gradient hover-eff w-full sm:w-36 cursor-pointer
-                 rounded-full py-3.5 px-8 text-white font-semibold flex items-center gap-2"
+                 rounded-full py-3.5  px-8 text-white font-semibold
+                  flex items-center justify-center gap-2"
               >
                 <Send size={20} />
                 Subscribe
