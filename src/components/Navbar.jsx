@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import logo from "../assets/Images/Logo.png";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
@@ -96,19 +97,21 @@ const Navbar = () => {
   return (
     <nav className="w-full">
       <Container>
-        <div className="mx-auto flex justify-between items-center h-16 my-4 border-b border-b-primary pb-5">
+        <div className="mx-auto flex justify-between items-center
+         h-16 my-4 border-b border-b-primary pb-5">
           <div className="flex items-center gap-2">
             <NavLink to="/">
               <img src={logo} alt="Logo" className="w-full h-20" />
             </NavLink>
           </div>
 
-          <ul className="hidden md:flex items-center gap-8  font-medium">
+          <ul className="hidden md:flex justify-center items-center gap-8  font-medium">
             {Links}
           </ul>
 
           {/* button  */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center justify-center gap-4">
+            <ThemeToggle></ThemeToggle>
             {user && (
               <div>
                 
@@ -123,7 +126,7 @@ const Navbar = () => {
                   </div>
                   <ul
                     tabIndex="-1"
-                    className="dropdown-content menu bg-white rounded-box
+                    className="dropdown-content menu rounded-box
                      z-10 w-52 p-3 font-semibold  shadow-sm  py-3"
                   >
                    <NavLink to='/createEvent'> 

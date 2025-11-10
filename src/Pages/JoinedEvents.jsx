@@ -45,7 +45,7 @@ const handleCancelJoin= (id)=>{
       {joinedEvent?.map((events) => (
         <div
           key={events?._id}
-          className="flex  my-8 flex-col sm:flex-row bg-white rounded-2xl shadow-md
+          className="flex  my-8 flex-col sm:flex-row rounded-2xl shadow-md
          hover:shadow-lg transition-shadow duration-300 overflow-hidden
           p-4 gap-4 border border-gray-100"
         >
@@ -58,7 +58,7 @@ const handleCancelJoin= (id)=>{
 
           <div className="flex flex-col space-y-4 w-full justify-between">
             <div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-3">
+              <h2 className="text-2xl font-semibold text-primary mb-3">
                 {events?.title}
               </h2>
 

@@ -48,7 +48,7 @@ const CreateEvent = () => {
       <div className="max-w-4xl mx-auto">
         <Link to="/upcomingEvents">
           <button
-            className="flex items-center gap-2 text-gray-700 hover:text-primary
+            className="flex items-center gap-2  hover:text-primary
            transition mb-6"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -62,13 +62,13 @@ const CreateEvent = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-2xl shadow-xl p-8 space-y-6"
+          className="border-white border-2 rounded-2xl shadow-xl p-8 space-y-6"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label
                 htmlFor="title"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium  mb-1"
               >
                 Title
               </label>
@@ -86,7 +86,7 @@ const CreateEvent = () => {
             <div>
               <label
                 htmlFor="category"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium  mb-1"
               >
                 Category
               </label>
@@ -119,7 +119,7 @@ const CreateEvent = () => {
           <div>
             <label
               htmlFor="event_img"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium  mb-1"
             >
               Your Events Image URL
             </label>
@@ -137,7 +137,7 @@ const CreateEvent = () => {
             <div>
               <label
                 htmlFor="YourName"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium  mb-1"
               >
                 Your Name
               </label>
@@ -155,7 +155,7 @@ const CreateEvent = () => {
             <div>
               <label
                 htmlFor="YourEmail"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium  mb-1"
               >
                 Your Email
               </label>
@@ -172,7 +172,7 @@ const CreateEvent = () => {
             <div>
               <label
                 htmlFor="YourContact"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium  mb-1"
               >
                 Your Contact
               </label>
@@ -189,7 +189,7 @@ const CreateEvent = () => {
             <div>
               <label
                 htmlFor="YourImageUrl"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium  mb-1"
               >
                 Your Image URL
               </label>
@@ -207,7 +207,7 @@ const CreateEvent = () => {
             <div className="flex-1">
               <label
                 htmlFor="location"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium  mb-1"
               >
                 Location
               </label>
@@ -224,7 +224,7 @@ const CreateEvent = () => {
             </div>
 
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium  mb-1">
                 Event Date
               </label>
               <DatePicker
@@ -246,7 +246,7 @@ const CreateEvent = () => {
           <div>
             <label
               htmlFor="description"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium  mb-1"
             >
               Simple Description about your Event
             </label>

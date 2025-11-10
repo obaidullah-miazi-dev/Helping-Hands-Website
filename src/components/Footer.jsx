@@ -27,7 +27,7 @@ const Footer = () => {
               volunteer opportunities.
             </p>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 dark:text-black">
               <a
                 href="#"
                 className="p-2 bg-[#d2efa7] rounded-full
