@@ -19,7 +19,7 @@ const EventCard = ({ events }) => {
           ? { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
           : { opacity: 0.4, scale: 0.95, y: 20 }
        }
-      className="p-5 border-2 border-secondary rounded-2xl h-full space-y-3 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-3 hover:shadow-lg">
+      className="p-5 border-2 border-secondary rounded-2xl h-full space-y-3 flex flex-col justify-between">
         <img
           className="rounded-2xl h-[250px] w-full"
           src={events?.event_img}
