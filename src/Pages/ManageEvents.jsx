@@ -417,7 +417,7 @@ const ManageEvents = () => {
                               <button
                                 type="submit"
                                 className="w-full bg-gradient text-white py-4 rounded-xl
-               font-semibold text-lg shadow-lg hover-eff transition"
+               font-semibold text-lg shadow-lg hover-eff transition cursor-pointer"
                               >
                                 Create Event
                               </button>

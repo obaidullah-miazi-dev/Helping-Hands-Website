@@ -55,7 +55,7 @@ const EventDetails = () => {
       });
     }
     if (!user) {
-      navigate("/login");
+      return navigate("/login", { state: location.pathname });
     }
     const joinInEventDetails = {
       title: eventDetails.title,
@@ -121,8 +121,8 @@ const EventDetails = () => {
                 </p>
                 {new Date(eventDetails?.event_date) > currentDate ? (
                   <p
-                    className="bg-orange-100 py-1.5 px-2 rounded-full
-                   text-orange-500 font-semibold flex gap-2 items-center"
+                    className="bg-yellow-100 py-1.5 px-2 rounded-full
+                   text-yellow-500 font-semibold flex gap-2 items-center"
                   >
                     <CircleDot width={18} className="animate-ping" /> Upcoming
                   </p>
