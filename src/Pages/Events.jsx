@@ -10,7 +10,6 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const axios = useAxios();
-  console.log(events);
 
   useEffect(() => {
     axios

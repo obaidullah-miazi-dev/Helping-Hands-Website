@@ -10,7 +10,6 @@ import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
-  console.log(user);
 
   const handleLogOut = () => {
     Swal.fire({
@@ -24,11 +23,15 @@ const Navbar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         logOut()
-          .then((res) => {
-            // console.log(res)
-          })
+          .then((res) => {})
           .catch((err) => {
-            console.log(err);
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: err,
+              showConfirmButton: false,
+              timer: 1500,
+            });
           });
 
         Swal.fire({

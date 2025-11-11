@@ -11,13 +11,10 @@ const EventDetails = () => {
   const { id } = useParams();
   const { user } = use(AuthContext);
   const [joinedEvent, setJoinedEvents] = useState([]);
-  // console.log(eventDetails);
   const currentDate = new Date();
   const axios = useAxios();
-  // console.log(joinedEvent);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     axios
@@ -39,7 +36,13 @@ const EventDetails = () => {
       .get(`/joinedEvents?email=${user?.email}`)
       .then((data) => setJoinedEvents(data.data))
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+        position: "center",
+        icon: "error",
+        title: error,
+        showConfirmButton: false,
+        timer: 1500,
+      });
       });
   }, [axios, user]);
 
@@ -48,7 +51,7 @@ const EventDetails = () => {
     if (alreadyJoined) {
       return Swal.fire({
         position: "center",
-        icon: "success",
+        icon: "error",
         title: "you have already joined in this event",
         showConfirmButton: false,
         timer: 1500,
@@ -81,7 +84,13 @@ const EventDetails = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+        position: "center",
+        icon: "error",
+        title: error,
+        showConfirmButton: false,
+        timer: 1500,
+      });
       });
   };
 

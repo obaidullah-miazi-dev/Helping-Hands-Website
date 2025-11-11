@@ -18,7 +18,13 @@ const JoinedEvents = () => {
       .get(`/joinedEvents?email=${user?.email}`)
       .then((data) => setJoinedEvents(data.data))
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: error,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .finally(() => setLoading(false));
   }, [axios, user]);
@@ -66,7 +72,7 @@ const JoinedEvents = () => {
     });
   };
 
-  //   console.log(joinedEvent);
+
   return (
     <Container>
       <h2

@@ -24,7 +24,13 @@ const ManageEvents = () => {
       .get(`/myEvents?email=${user?.email}`)
       .then((data) => setMyEvents(data.data))
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+                position: "center",
+                icon: "error",
+                title: error,
+                showConfirmButton: false,
+                timer: 1500,
+              });
       })
       .finally(() => setLoading(false));
   }, [axios, user]);
@@ -51,7 +57,13 @@ const ManageEvents = () => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: error,
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
           });
         Swal.fire({
           position: "center",
@@ -87,7 +99,13 @@ const ManageEvents = () => {
             .get(`/myEvents?email=${user?.email}`)
             .then((data) => setMyEvents(data.data))
             .catch((error) => {
-              console.log(error);
+              Swal.fire({
+                      position: "center",
+                      icon: "error",
+                      title: error,
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
             });
           Swal.fire({
             position: "center",
@@ -99,7 +117,13 @@ const ManageEvents = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+                position: "center",
+                icon: "error",
+                title: error,
+                showConfirmButton: false,
+                timer: 1500,
+              });
       });
     e.target.reset();
     document.getElementById("my_modal").close();

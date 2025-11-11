@@ -8,7 +8,6 @@ import { useInView } from "../Hooks/use-in-view";
 const EventCard = ({ events }) => {
       const cardRef = useRef(null);
      const isInView = useInView(cardRef, 0.6);
-  console.log(events);
   const currentDate = new Date()
   return (
     <div>

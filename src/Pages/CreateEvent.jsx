@@ -45,7 +45,13 @@ const CreateEvent = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: error,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 

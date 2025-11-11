@@ -11,7 +11,6 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // console.log(e.target);
     const displayName = e.target.name.value;
     const photoURL = e.target.photo.value;
     const email = e.target.email.value;
@@ -77,8 +76,6 @@ export default function Register() {
   const handleGoogleSignUp = () => {
     googleLogIn()
       .then((res) => {
-        // console.log(res.user)
-
         Swal.fire({
           position: "center",
           icon: "success",
@@ -89,7 +86,13 @@ export default function Register() {
         navigate(`${location?.state ? location?.state : "/"}`);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+                position: "center",
+                icon: "error",
+                title: err,
+                showConfirmButton: false,
+                timer: 1500,
+              });
       });
   };
 

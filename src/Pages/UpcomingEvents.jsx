@@ -11,7 +11,6 @@ const UpcomingEvents = () => {
   const [error, setError] = useState(null);
   const [eventType, setEventType] = useState("");
   const axios = useAxios();
-  console.log(events);
 
   useEffect(() => {
     axios
@@ -31,7 +30,13 @@ const UpcomingEvents = () => {
         setEvents(data.data);
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: error,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .finally(() => setLoading(false));
   };
@@ -45,7 +50,13 @@ const UpcomingEvents = () => {
         setEvents(data.data);
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: error,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .finally(() => setLoading(false));
   };

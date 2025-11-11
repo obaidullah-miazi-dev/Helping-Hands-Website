@@ -26,7 +26,6 @@ export default function Login() {
       })
       .catch((error) => {
         const errorCode = error.code;
-        console.log(errorCode);
         Swal.fire({
           position: "center",
           icon: "error",
@@ -41,7 +40,6 @@ export default function Login() {
   const handleGoogleSignIn = () => {
     googleLogIn()
       .then((res) => {
-        // console.log(res.user)
         Swal.fire({
           position: "center",
           icon: "success",
@@ -52,7 +50,13 @@ export default function Login() {
         navigate(`${location?.state ? location?.state : "/"}`);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: err,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .finally(() => setLoading(false));
   };
