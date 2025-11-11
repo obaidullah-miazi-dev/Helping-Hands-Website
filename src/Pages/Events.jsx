@@ -20,20 +20,55 @@ const Events = () => {
       .finally(setLoading(false));
   }, [axios]);
 
-  if (loading) return <p>loading..................</p>;
+  const handleSubmit = (searchedText) => {
+    setLoading(true);
+    axios.get(`/searchAllEvent?search=${searchedText}`).then((data) => {
+      setLoading(false);
+      setEvents(data.data);
+    });
+  };
+  
   if (error) return alert(error);
   return (
     <>
       <Container>
-        <h2 className="md:text-5xl text-3xl text-primary font-bold border-l-8 border-primary pl-3 mt-16 mb-8">
-          All Events
-        </h2>
+        <div className="flex justify-between items-center gap-5  mt-28 mb-12">
+          <h2 className="md:text-5xl text-xl text-primary font-bold text-nowrap md:border-l-8 border-primary pl-3 ">
+            All Events
+          </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
-          {events?.map((event) => (
-            <EventCard key={event._id} events={event}></EventCard>
-          ))}
+          <form onChange={(e) => handleSubmit(e.target.value)}>
+            <label className="input rounded-full md:w-xs">
+              <svg
+                className="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input type="search" required placeholder="Search" />
+            </label>
+          </form>
         </div>
+
+        {loading ? (
+          <p>loading..................</p>
+        ) : events?.length===0 ? <div className="my-76 flex justify-center items-center"><p className="font-bold text-xl md:text-8xl">⚠️ No Data Found</p></div>: (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
+            {events?.map((event) => (
+              <EventCard key={event._id} events={event}></EventCard>
+            ))}
+          </div>
+        )}
       </Container>
     </>
   );
