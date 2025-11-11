@@ -1,5 +1,6 @@
 import Banner from "../components/Banner";
 import CompletedEvent from "../components/CompletedEvent";
+import Features from "../components/Features";
 import Newsletter from "../components/Newsletter";
 import { Card, Carousel } from "../components/ui/apple-cards-carousel";
 
@@ -78,6 +79,8 @@ const Home = () => {
     <div>
       <Banner></Banner>
       <CompletedEvent></CompletedEvent>
+
+      <Features></Features>
 
       <div className="p-4">
         <h2

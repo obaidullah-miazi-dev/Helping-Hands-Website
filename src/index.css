@@ -29,6 +29,16 @@
 
 
 
+html[data-theme="light"] body {
+  @apply bg-linear-to-b from-white to-[#f0ffdf];
+}
+
+
+html[data-theme="dark"] body {
+  @apply bg-[#0d0d0d]; 
+}
+
+
 .swiper {
   width: 100%;
   height: 100%;

@@ -99,11 +99,11 @@ const Navbar = () => {
       <Container>
         <div
           className="mx-auto flex justify-between items-center
-         h-16 my-4 border-b border-b-primary pb-5"
+         h-18 py-5"
         >
           <div className="flex items-center gap-2">
             <NavLink to="/">
-              <img src={logo} alt="Logo" className="w-full h-20" />
+              <img src={logo} alt="Logo" className="w-full h-16" />
             </NavLink>
           </div>
 

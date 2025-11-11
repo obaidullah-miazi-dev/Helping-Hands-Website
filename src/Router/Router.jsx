@@ -37,7 +37,7 @@ export const router =createBrowserRouter([
             },
             {
                 path: '/eventDetails/:id',
-                element:<PrivateRoute><EventDetails /></PrivateRoute>
+                Component: EventDetails
             },
             {
                 path:'/joinedEvents',

@@ -35,7 +35,7 @@ const Newsletter = () => {
               }
             : { opacity: 0.4, scale: 0.95, y: 20 }
         }
-        className="py-30 bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] rounded-2xl my-16"
+        className="py-30 bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] rounded-2xl my-32"
       >
         <div className="container mx-auto px-4">
           <div className=" text-center space-y-8">
