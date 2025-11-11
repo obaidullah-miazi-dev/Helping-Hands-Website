@@ -1,13 +1,26 @@
+/* eslint-disable no-unused-vars */
 import { Calendar, CircleCheckBig, CircleDot, LocateIcon, MapPin } from "lucide-react";
-import React from "react";
+import React, { useRef } from "react";
 import { NavLink } from "react-router";
+import { motion } from "motion/react"
+import { useInView } from "../Hooks/use-in-view";
 
 const EventCard = ({ events }) => {
+      const cardRef = useRef(null);
+     const isInView = useInView(cardRef, 0.6);
   console.log(events);
   const currentDate = new Date()
   return (
     <div>
-      <div className="p-5 border-2 border-secondary rounded-2xl h-full space-y-3 flex flex-col justify-between">
+      <motion.div 
+      ref={cardRef}
+       initial={{ opacity: 0, scale: 0.9, y: 200 }}
+       animate={
+         isInView
+          ? { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+          : { opacity: 0.4, scale: 0.95, y: 20 }
+       }
+      className="p-5 border-2 border-secondary rounded-2xl h-full space-y-3 flex flex-col justify-between">
         <img
           className="rounded-2xl h-[250px] w-full"
           src={events?.event_img}
@@ -53,7 +66,7 @@ const EventCard = ({ events }) => {
           View Details
         </button>
         </NavLink>
-      </div>
+      </motion.div>
     </div>
   );
 };
