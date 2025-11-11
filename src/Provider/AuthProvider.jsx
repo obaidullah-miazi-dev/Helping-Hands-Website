@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from '../Firebase/Firebase.config';
+import Loading from '../components/Loading';
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -49,7 +50,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    if(loading) return <p>loadingg.....</p>
+    if(loading) return <Loading />
 
 
     const authData = {

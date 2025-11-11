@@ -33,7 +33,7 @@ const Events = () => {
     <>
       <Container>
         <div className="flex justify-between items-center gap-5  mt-28 mb-12">
-          <h2 className="md:text-5xl text-xl text-primary font-bold text-nowrap md:border-l-8 border-primary pl-3 ">
+          <h2 className="md:text-5xl text-xl text-primary font-bold text-nowrap md:border-l-8 border-primary pl-3">
             All Events
           </h2>
 
