@@ -181,7 +181,7 @@ const ManageEvents = () => {
 
                           <form
                             onSubmit={handleSubmit}
-                            className="bg-white rounded-2xl p-8 space-y-6"
+                            className="rounded-2xl p-8 space-y-6"
                           >
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                               <div>

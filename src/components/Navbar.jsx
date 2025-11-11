@@ -115,7 +115,7 @@ const Navbar = () => {
             {user && (
               <div>
                 
-                <div className="dropdown dropdown-end">
+                <div className="dropdown dropdown-end ">
                   <div tabIndex={0} role="button" className="mt-3">
                     <img
                     title={user?.displayName}
@@ -127,6 +127,61 @@ const Navbar = () => {
                   <ul
                     tabIndex="-1"
                     className="dropdown-content menu rounded-box
+                     z-10 w-52 p-3 font-semibold bg-secondary shadow-sm  py-3"
+                  >
+                   <NavLink to='/createEvent'> 
+                    <li  className="hover:bg-primary hover:text-white p-2 rounded-xl">
+                      Create an Event
+                    </li>
+                   </NavLink>
+                   <NavLink to='/joinedEvents'>
+                    <li className="hover:bg-primary hover:text-white p-2 rounded-xl">
+                      Joined Events
+                    </li>
+                   </NavLink>
+
+
+                   <NavLink to='/manageEvents'>
+                    <li className="hover:bg-primary hover:text-white p-2 rounded-xl">
+                      Manage Events
+                    </li>
+                   </NavLink>
+                  </ul>
+                </div>
+              </div>
+            )}
+            {buttons}
+          </div>
+
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden p-2 text-gray-700"
+          >
+            {open ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
+
+        {open && (
+          <div className="md:hidden border-t border-gray-100 shadow-sm">
+            <ul className="flex flex-col items-center gap-4 py-6  font-medium">
+              {Links}
+
+
+            <div className="flex gap-2 items-center">
+              <ThemeToggle></ThemeToggle>
+              {/* profile pic with dropdown menu */}
+            <div className="dropdown dropdown-center">
+                  <div tabIndex={0} role="button" className="mt-3">
+                    <img
+                    title={user?.displayName}
+                  src={user?.photoURL}
+                  alt={user?.displayName}
+                  className="rounded-full bg-secondary w-12 h-12 mb-2 cursor-pointer"
+                />
+                  </div>
+                  <ul
+                    tabIndex="-1"
+                    className="dropdown-content menu rounded-box bg-black text-white
                      z-10 w-52 p-3 font-semibold  shadow-sm  py-3"
                   >
                    <NavLink to='/createEvent'> 
@@ -148,26 +203,10 @@ const Navbar = () => {
                    </NavLink>
                   </ul>
                 </div>
-              </div>
-            )}
-            {buttons}
-          </div>
-
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 text-gray-700"
-          >
-            {open ? <X size={26} /> : <Menu size={26} />}
-          </button>
-        </div>
-
-        {open && (
-          <div className="md:hidden bg-white border-t border-gray-100 shadow-sm">
-            <ul className="flex flex-col items-center gap-4 py-6 text-gray-700 font-medium">
-              {Links}
 
               {/* button  */}
               {buttons}
+            </div>
             </ul>
           </div>
         )}

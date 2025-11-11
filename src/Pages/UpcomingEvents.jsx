@@ -53,9 +53,9 @@ const UpcomingEvents = () => {
           </h2>
 
           <div className="flex flex-col md:flex-row gap-3 mb-8 md:mb-0 mx-auto md:mx-0">
-            <label className="form-control w-full max-w-xs">
+            <label className="form-control flex-1">
               <select
-                className="select select-bordered font-semibold md:w-44 rounded-full"
+                className="select select-bordered font-semibold md:w-44  rounded-full"
                 value={eventType}
                 onChange={(e) => handletype(e.target.value)}
               >
@@ -78,7 +78,7 @@ const UpcomingEvents = () => {
             </label>
 
             <form onChange={(e) => handleSubmit(e.target.value)}>
-              <label className="input rounded-full w-xs">
+              <label className="input rounded-full  flex-2">
                 <svg
                   className="h-[1em] opacity-50"
                   xmlns="http://www.w3.org/2000/svg"
