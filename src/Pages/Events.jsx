@@ -3,6 +3,7 @@ import useAxios from "../Hooks/useAxios";
 import EventCard from "../components/EventCard";
 import Container from "../components/Container";
 import Swal from "sweetalert2";
+import Loading from "../components/Loading";
 
 const Events = () => {
   const [events, setEvents] = useState(null);
@@ -18,15 +19,17 @@ const Events = () => {
       .catch((error) => {
         setError(error);
       })
-      .finally(setLoading(false));
+      .finally(()=>setLoading(false));
   }, [axios]);
 
   const handleSubmit = (searchedText) => {
     setLoading(true);
-    axios.get(`/searchAllEvent?search=${searchedText}`).then((data) => {
-      setLoading(false);
-      setEvents(data.data);
-    });
+    axios.get(`/searchAllEvent?search=${searchedText}`)
+    .then((data) => {
+      setEvents(data.data)
+    }).catch(error=>{
+      setError(error.code)
+    }).finally(()=>setLoading(false))
   };
 
   if (error) {
@@ -70,10 +73,10 @@ const Events = () => {
         </div>
 
         {loading ? (
-          <p>loading..................</p>
+          <Loading />
         ) : events?.length === 0 ? (
           <div className="my-76 flex justify-center items-center">
-            <p className="font-bold text-xl md:text-8xl">⚠️ No Data Found</p>
+            <p className="font-bold min-h-screen text-xl md:text-8xl">⚠️ No Data Found</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
