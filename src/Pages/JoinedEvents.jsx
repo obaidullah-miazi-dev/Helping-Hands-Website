@@ -3,22 +3,28 @@ import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "../Provider/AuthProvider";
 import { NavLink } from "react-router";
 import Container from "../components/Container";
+import Loading from "../components/Loading";
 
 const JoinedEvents = () => {
   const axios = useAxios();
   const { user } = use(AuthContext);
   const [joinedEvent, setJoinedEvents] = useState([]);
+  const [loading,setLoading] = useState(true)
 
 
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get(`/joinedEvents?email=${user?.email}`)
       .then((data) => setJoinedEvents(data.data))
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .finally(()=>setLoading(false))
   }, [axios, user]);
+
+  if(loading) return <Loading></Loading>
 
 const handleCancelJoin= (id)=>{
     alert('are you sure to cancel')
@@ -41,7 +47,9 @@ const handleCancelJoin= (id)=>{
          border-l-8 border-primary pl-3 mt-16 mb-8">
           Joined Events
         </h2>
-        <div>
+        {joinedEvent.length===0?<div className="my-76 flex justify-center items-center">
+            <p className="font-bold text-xl md:text-8xl">⚠️ No Data Found</p>
+          </div>:<div>
       {joinedEvent?.map((events) => (
         <div
           key={events?._id}
@@ -102,7 +110,7 @@ const handleCancelJoin= (id)=>{
           </div>
         </div>
       ))}
-    </div>
+    </div>}
     </Container>
   );
 };
