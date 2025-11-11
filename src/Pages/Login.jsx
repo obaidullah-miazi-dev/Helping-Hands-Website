@@ -7,6 +7,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 export default function Login() {
   const { googleLogIn, setLoading, signInUser } = use(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation()
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ export default function Login() {
           showConfirmButton: false,
           timer: 2000,
         });
-        navigate("/");
+         navigate(`${location?.state ? location?.state : '/'}`)
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -48,6 +49,7 @@ export default function Login() {
           showConfirmButton: false,
           timer: 2000,
         });
+        navigate(`${location?.state ? location?.state : '/'}`)
       })
       .catch((err) => {
         console.log(err);

@@ -66,7 +66,7 @@ export default function Register() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-            }).finally(()=>{navigate('/'),setLoading(false)})
+            }).finally(()=>{navigate(`${location?.state ? location?.state : '/'}`),setLoading(false)})
         
 
 
@@ -84,6 +84,7 @@ export default function Register() {
           showConfirmButton: false,
           timer: 2000,
         });
+        navigate(`${location?.state ? location?.state : '/'}`)
       })
       .catch((err) => {
         console.log(err);

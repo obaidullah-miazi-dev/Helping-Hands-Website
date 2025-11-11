@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import useAxios from "../Hooks/useAxios";
-import { useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import Container from "./Container";
 import { Calendar, CircleCheckBig, CircleDot, MapPin } from "lucide-react";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -13,7 +13,10 @@ const EventDetails = () => {
   // console.log(eventDetails);
   const currentDate = new Date();
   const axios = useAxios();
-  console.log(joinedEvent);
+  // console.log(joinedEvent);
+  const navigate = useNavigate()
+  const location = useLocation()
+  console.log(location);
 
 
 
@@ -44,6 +47,9 @@ const EventDetails = () => {
   const handleJoinIn = () =>{
     if(alreadyJoined){
       return alert('you have already joined in this event')
+    }
+    if(!user){
+      navigate('/login')
     }
     const joinInEventDetails = {
       title: eventDetails.title,
