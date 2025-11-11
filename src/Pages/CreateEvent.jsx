@@ -93,7 +93,7 @@ const CreateEvent = () => {
               <select
                 id="category"
                 name="category"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg
+                className="w-full px-4 py-2 border  bg-base-100 text-base-content border-gray-300 rounded-lg
                  focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
                 required
               >

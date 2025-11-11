@@ -92,12 +92,12 @@ export default function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-2">
+    <div className="flex items-center justify-center min-h-screen  p-4">
+      <div className="w-full max-w-md  rounded-2xl shadow-lg p-8">
+        <h1 className="text-3xl font-bold text-center  mb-2">
           Register Now!
         </h1>
-        <p className="text-center text-sm text-gray-600 mb-6">
+        <p className="text-center text-sm  mb-6">
           Already have an account?{" "}
           <Link to="/login">
             <li className="text-primary hover:underline font-medium list-none inline">
@@ -111,7 +111,7 @@ export default function Register() {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium  mb-1"
             >
               Name
             </label>
@@ -129,7 +129,7 @@ export default function Register() {
           <div>
             <label
               htmlFor="photoURL"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium  mb-1"
             >
               Photo URL
             </label>
@@ -146,7 +146,7 @@ export default function Register() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium  mb-1"
             >
               Email
             </label>
@@ -164,7 +164,7 @@ export default function Register() {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium  mb-1"
             >
               Password
             </label>
@@ -189,7 +189,7 @@ export default function Register() {
 
         <div className="mt-6 flex items-center justify-center">
           <div className="border-t border-gray-300 grow"></div>
-          <span className="px-4 text-sm text-gray-500 bg-white">OR</span>
+          <span className="px-4 text-sm  ">OR</span>
           <div className="border-t border-gray-300 grow"></div>
         </div>
 
@@ -197,7 +197,7 @@ export default function Register() {
         <button
           onClick={handleGoogleSignUp}
           type="button"
-          className="mt-6 w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-3 px-4 text-gray-700 font-medium hover:bg-gray-50 transition cursor-pointer"
+          className="mt-6 w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-3 px-4 font-medium hover:bg-gray-50 transition cursor-pointer"
         >
           <img
             src="https://www.google.com/favicon.ico"

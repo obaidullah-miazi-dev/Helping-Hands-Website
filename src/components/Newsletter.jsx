@@ -1,8 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { Mail, Send } from "lucide-react";
 import Swal from "sweetalert2";
 import Container from "./Container";
+import { useInView } from "../Hooks/use-in-view";
+import { useRef } from "react";
+import { motion } from "motion/react"
 
 const Newsletter = () => {
+  const cardRef = useRef(null);
+       const isInView = useInView(cardRef, 0.6);
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("thanks for subscribing");
@@ -10,7 +16,15 @@ const Newsletter = () => {
 
   return (
     <Container>
-      <section className="py-30 bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] rounded-2xl my-16">
+      <motion.section 
+      ref={cardRef}
+       initial={{ opacity: 0, scale: 0.9, y: 200 }}
+       animate={
+         isInView
+          ? { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+          : { opacity: 0.4, scale: 0.95, y: 20 }
+       }
+      className="py-30 bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] rounded-2xl my-16">
         <div className="container mx-auto px-4">
           <div className=" text-center space-y-8">
             <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6">
@@ -57,7 +71,7 @@ const Newsletter = () => {
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
     </Container>
   );
 };
