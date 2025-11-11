@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxios from "../Hooks/useAxios";
 import EventCard from "../components/EventCard";
 import Container from "../components/Container";
+import Swal from "sweetalert2";
 
 const Events = () => {
   const [events, setEvents] = useState(null);
@@ -27,8 +28,16 @@ const Events = () => {
       setEvents(data.data);
     });
   };
-  
-  if (error) return alert(error);
+
+  if (error) {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: error,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
   return (
     <>
       <Container>
@@ -62,7 +71,11 @@ const Events = () => {
 
         {loading ? (
           <p>loading..................</p>
-        ) : events?.length===0 ? <div className="my-76 flex justify-center items-center"><p className="font-bold text-xl md:text-8xl">⚠️ No Data Found</p></div>: (
+        ) : events?.length === 0 ? (
+          <div className="my-76 flex justify-center items-center">
+            <p className="font-bold text-xl md:text-8xl">⚠️ No Data Found</p>
+          </div>
+        ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
             {events?.map((event) => (
               <EventCard key={event._id} events={event}></EventCard>

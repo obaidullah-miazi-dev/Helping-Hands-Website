@@ -7,12 +7,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays } from "date-fns";
 import useAxios from "../Hooks/useAxios";
+import Swal from "sweetalert2";
 
 const CreateEvent = () => {
   const { user } = use(AuthContext);
   const [eventDate, setEventDate] = useState(null);
-  const navigate = useNavigate()
-  const axios = useAxios()
+  const navigate = useNavigate();
+  const axios = useAxios();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -29,18 +30,23 @@ const CreateEvent = () => {
       event_date: eventDate.toISOString(),
     };
 
-    axios.post('/createEvent',formData)
-    .then(data => {
-        if(data.data.insertedId){
-            alert('event created Successfully')
-            navigate('/upcomingEvents')
+    axios
+      .post("/createEvent", formData)
+      .then((data) => {
+        if (data.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Event Created Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/upcomingEvents");
         }
-        
-    })
-    .catch(error=>{
+      })
+      .catch((error) => {
         console.log(error);
-    })
-
+      });
   };
 
   return (

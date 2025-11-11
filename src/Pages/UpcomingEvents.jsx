@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import useAxios from "../Hooks/useAxios";
 import EventCard from "../components/EventCard";
 import Container from "../components/Container";
-import { Search, Send } from "lucide-react";
 import Loading from "../components/Loading";
+import Swal from "sweetalert2";
 
 const UpcomingEvents = () => {
   const [events, setEvents] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [eventType, setEventType] = useState('');
+  const [eventType, setEventType] = useState("");
   const axios = useAxios();
   console.log(events);
 
@@ -20,30 +20,45 @@ const UpcomingEvents = () => {
       .catch((error) => {
         setError(error);
       })
-      .finally(()=>setLoading(false))
+      .finally(() => setLoading(false));
   }, [axios]);
 
   const handleSubmit = (searchedText) => {
     setLoading(true);
-    axios.get(`/search?search=${searchedText}`).then((data) => {
-      setEvents(data.data);
-    }).catch(error => {
-      console.log(error)
-    }).finally(()=> setLoading(false))
+    axios
+      .get(`/search?search=${searchedText}`)
+      .then((data) => {
+        setEvents(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => setLoading(false));
   };
 
- const handletype = (categoryType)=>{
-   setLoading(true);
-   setEventType(categoryType)
-    axios.get(`/filteredEvent?eventType=${categoryType}`).then((data) => {
-      setEvents(data.data);
-    }).catch(error=>{
-      console.log(error)
-    })
-    .finally(()=>setLoading(false))
- }
+  const handletype = (categoryType) => {
+    setLoading(true);
+    setEventType(categoryType);
+    axios
+      .get(`/filteredEvent?eventType=${categoryType}`)
+      .then((data) => {
+        setEvents(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => setLoading(false));
+  };
 
-  if (error) return alert(error);
+  if (error) {
+    return Swal.fire({
+      position: "center",
+      icon: "error",
+      title: error,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
   return (
     <>
       <Container>
@@ -59,21 +74,33 @@ const UpcomingEvents = () => {
                 value={eventType}
                 onChange={(e) => handletype(e.target.value)}
               >
-                <option value=''>Filter By Category</option>
-                <option value='Community Meetup'>Community Meetup</option>
-                <option value='Charity & Fundraising'>Charity & Fundraising</option>
-                <option value='Sports & Fitness'>Sports & Fitness</option>
-                <option value='Cultural Program'>Cultural Program</option>
-                <option value='Educational Workshop'>Educational Workshop</option>
-                <option value='Religious Event'>Religious Event</option>
-                <option value='Music & Concert'>Music & Concert</option>
-                <option value='Festival & Celebration'>Festival & Celebration</option>
-                <option value='Food & Cooking Event'>Food & Cooking Event</option>
-                <option value='Business Conference'>Business Conference</option>
-                <option value='Startup & Networking'>Startup & Networking</option>
-                <option value='Health & Awareness'>Health & Awareness</option>
-                <option value='Volunteer Program'>Volunteer Program</option>
-                <option value='Travel & Outdoor Trip'>Travel & Outdoor Trip</option>
+                <option value="">Filter By Category</option>
+                <option value="Community Meetup">Community Meetup</option>
+                <option value="Charity & Fundraising">
+                  Charity & Fundraising
+                </option>
+                <option value="Sports & Fitness">Sports & Fitness</option>
+                <option value="Cultural Program">Cultural Program</option>
+                <option value="Educational Workshop">
+                  Educational Workshop
+                </option>
+                <option value="Religious Event">Religious Event</option>
+                <option value="Music & Concert">Music & Concert</option>
+                <option value="Festival & Celebration">
+                  Festival & Celebration
+                </option>
+                <option value="Food & Cooking Event">
+                  Food & Cooking Event
+                </option>
+                <option value="Business Conference">Business Conference</option>
+                <option value="Startup & Networking">
+                  Startup & Networking
+                </option>
+                <option value="Health & Awareness">Health & Awareness</option>
+                <option value="Volunteer Program">Volunteer Program</option>
+                <option value="Travel & Outdoor Trip">
+                  Travel & Outdoor Trip
+                </option>
               </select>
             </label>
 

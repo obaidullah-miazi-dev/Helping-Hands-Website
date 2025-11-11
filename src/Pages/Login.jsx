@@ -7,7 +7,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 export default function Login() {
   const { googleLogIn, setLoading, signInUser } = use(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -16,19 +16,19 @@ export default function Login() {
     signInUser(email, password)
       .then((data) => {
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Logged In Successfully",
           showConfirmButton: false,
           timer: 2000,
         });
-         navigate(`${location?.state ? location?.state : '/'}`)
+        navigate(`${location?.state ? location?.state : "/"}`);
       })
       .catch((error) => {
         const errorCode = error.code;
         console.log(errorCode);
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "error",
           title: errorCode,
           showConfirmButton: false,
@@ -43,13 +43,13 @@ export default function Login() {
       .then((res) => {
         // console.log(res.user)
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Logged In Successfully",
           showConfirmButton: false,
           timer: 2000,
         });
-        navigate(`${location?.state ? location?.state : '/'}`)
+        navigate(`${location?.state ? location?.state : "/"}`);
       })
       .catch((err) => {
         console.log(err);
@@ -60,9 +60,7 @@ export default function Login() {
   return (
     <div className="flex items-center justify-center min-h-screen  p-4">
       <div className="w-full max-w-md rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center mb-4">
-          Login Now!
-        </h1>
+        <h1 className="text-3xl font-bold text-center mb-4">Login Now!</h1>
         <p className="text-center text-sm  mb-6">
           Don't have an account?{" "}
           <Link to="/register">
@@ -75,10 +73,7 @@ export default function Login() {
         <form className="space-y-5" onSubmit={handleLogin}>
           {/* Email */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium  mb-1"
-            >
+            <label htmlFor="email" className="block text-sm font-medium  mb-1">
               Email
             </label>
             <input

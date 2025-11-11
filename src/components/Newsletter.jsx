@@ -4,27 +4,39 @@ import Swal from "sweetalert2";
 import Container from "./Container";
 import { useInView } from "../Hooks/use-in-view";
 import { useRef } from "react";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
 
 const Newsletter = () => {
   const cardRef = useRef(null);
-       const isInView = useInView(cardRef, 0.6);
+  const isInView = useInView(cardRef, 0.6);
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("thanks for subscribing");
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Thanks For Subscribe",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
     <Container>
-      <motion.section 
-      ref={cardRef}
-       initial={{ opacity: 0, scale: 0.9, y: 200 }}
-       animate={
-         isInView
-          ? { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-          : { opacity: 0.4, scale: 0.95, y: 20 }
-       }
-      className="py-30 bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] rounded-2xl my-16">
+      <motion.section
+        ref={cardRef}
+        initial={{ opacity: 0, scale: 0.9, y: 200 }}
+        animate={
+          isInView
+            ? {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                transition: { duration: 0.8, ease: "easeOut" },
+              }
+            : { opacity: 0.4, scale: 0.95, y: 20 }
+        }
+        className="py-30 bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] rounded-2xl my-16"
+      >
         <div className="container mx-auto px-4">
           <div className=" text-center space-y-8">
             <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6">
@@ -46,6 +58,7 @@ const Newsletter = () => {
                 />
                 <input
                   type="email"
+                  required
                   placeholder="Enter your email"
                   className="w-full pl-12 pr-4 py-3.5 rounded-full border-2
                    border-secondary bg-white text-gray-800 font-medium

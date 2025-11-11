@@ -6,8 +6,8 @@ import Container from "../components/Container";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays } from "date-fns";
-import { ArrowLeft } from "lucide-react";
 import Loading from "../components/Loading";
+import Swal from "sweetalert2";
 
 const ManageEvents = () => {
   const axios = useAxios();
@@ -16,34 +16,52 @@ const ManageEvents = () => {
   const [eventDate, setEventDate] = useState(null);
   const [editId, setEditId] = useState(null);
   const [eventData, setEventData] = useState(null);
-  const [loading,setLoading]= useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     axios
       .get(`/myEvents?email=${user?.email}`)
       .then((data) => setMyEvents(data.data))
       .catch((error) => {
         console.log(error);
       })
-      .finally(()=> setLoading(false))
+      .finally(() => setLoading(false));
   }, [axios, user]);
 
-
-
   const handleDeleteEvent = (id) => {
-    alert("are you sure to Delete");
-    axios
-      .delete(`/myEvent/${id}`)
-      .then((data) => {
-        if (data.data.deletedCount) {
-          const remainingEvents = myEvent.filter((event) => event._id !== id);
-          setMyEvents(remainingEvents);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`/myEvent/${id}`)
+          .then((data) => {
+            if (data.data.deletedCount) {
+              const remainingEvents = myEvent.filter(
+                (event) => event._id !== id
+              );
+              setMyEvents(remainingEvents);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Deleted The Event",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   const handleSubmit = (e) => {
@@ -71,7 +89,13 @@ const ManageEvents = () => {
             .catch((error) => {
               console.log(error);
             });
-          alert("updated successfully");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Updated Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       })
       .catch((error) => {
@@ -88,13 +112,17 @@ const ManageEvents = () => {
       .get(`/eventDetails/${id}`)
       .then((data) => setEventData(data.data))
       .catch((error) => {
-        alert(error.code);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: error.code,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
-  if(loading) return <Loading></Loading>
-
-
+  if (loading) return <Loading></Loading>;
 
   return (
     <Container>

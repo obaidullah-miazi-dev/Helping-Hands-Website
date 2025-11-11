@@ -32,7 +32,7 @@ const Navbar = () => {
           });
 
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "loged out successfully",
           showConfirmButton: false,
@@ -97,8 +97,10 @@ const Navbar = () => {
   return (
     <nav className="w-full">
       <Container>
-        <div className="mx-auto flex justify-between items-center
-         h-16 my-4 border-b border-b-primary pb-5">
+        <div
+          className="mx-auto flex justify-between items-center
+         h-16 my-4 border-b border-b-primary pb-5"
+        >
           <div className="flex items-center gap-2">
             <NavLink to="/">
               <img src={logo} alt="Logo" className="w-full h-20" />
@@ -114,38 +116,36 @@ const Navbar = () => {
             <ThemeToggle></ThemeToggle>
             {user && (
               <div>
-                
                 <div className="dropdown dropdown-end ">
                   <div tabIndex={0} role="button" className="mt-3">
                     <img
-                    title={user?.displayName}
-                  src={user?.photoURL}
-                  alt={user?.displayName}
-                  className="rounded-full bg-secondary w-12 h-12 cursor-pointer"
-                />
+                      title={user?.displayName}
+                      src={user?.photoURL}
+                      alt={user?.displayName}
+                      className="rounded-full bg-secondary w-12 h-12 cursor-pointer"
+                    />
                   </div>
                   <ul
                     tabIndex="-1"
                     className="dropdown-content menu rounded-box
                      z-10 w-52 p-3 font-semibold bg-secondary shadow-sm  py-3"
                   >
-                   <NavLink to='/createEvent'> 
-                    <li  className="hover:bg-primary hover:text-white p-2 rounded-xl">
-                      Create an Event
-                    </li>
-                   </NavLink>
-                   <NavLink to='/joinedEvents'>
-                    <li className="hover:bg-primary hover:text-white p-2 rounded-xl">
-                      Joined Events
-                    </li>
-                   </NavLink>
+                    <NavLink to="/createEvent">
+                      <li className="hover:bg-primary hover:text-white p-2 rounded-xl">
+                        Create an Event
+                      </li>
+                    </NavLink>
+                    <NavLink to="/joinedEvents">
+                      <li className="hover:bg-primary hover:text-white p-2 rounded-xl">
+                        Joined Events
+                      </li>
+                    </NavLink>
 
-
-                   <NavLink to='/manageEvents'>
-                    <li className="hover:bg-primary hover:text-white p-2 rounded-xl">
-                      Manage Events
-                    </li>
-                   </NavLink>
+                    <NavLink to="/manageEvents">
+                      <li className="hover:bg-primary hover:text-white p-2 rounded-xl">
+                        Manage Events
+                      </li>
+                    </NavLink>
                   </ul>
                 </div>
               </div>
@@ -166,47 +166,45 @@ const Navbar = () => {
             <ul className="flex flex-col items-center gap-4 py-6  font-medium">
               {Links}
 
-
-            <div className="flex gap-2 items-center">
-              <ThemeToggle></ThemeToggle>
-              {/* profile pic with dropdown menu */}
-            <div className="dropdown dropdown-center">
+              <div className="flex gap-2 items-center">
+                <ThemeToggle></ThemeToggle>
+                {/* profile pic with dropdown menu */}
+                <div className="dropdown dropdown-center">
                   <div tabIndex={0} role="button" className="mt-3">
                     <img
-                    title={user?.displayName}
-                  src={user?.photoURL}
-                  alt={user?.displayName}
-                  className="rounded-full bg-secondary w-12 h-12 mb-2 cursor-pointer"
-                />
+                      title={user?.displayName}
+                      src={user?.photoURL}
+                      alt={user?.displayName}
+                      className="rounded-full bg-secondary w-12 h-12 mb-2 cursor-pointer"
+                    />
                   </div>
                   <ul
                     tabIndex="-1"
                     className="dropdown-content menu rounded-box bg-black text-white
                      z-10 w-52 p-3 font-semibold  shadow-sm  py-3"
                   >
-                   <NavLink to='/createEvent'> 
-                    <li  className="hover:bg-secondary p-2 rounded-xl">
-                      Create an Event
-                    </li>
-                   </NavLink>
-                   <NavLink to='/joinedEvents'>
-                    <li className="hover:bg-secondary p-2 rounded-xl">
-                      Joined Events
-                    </li>
-                   </NavLink>
+                    <NavLink to="/createEvent">
+                      <li className="hover:bg-secondary p-2 rounded-xl">
+                        Create an Event
+                      </li>
+                    </NavLink>
+                    <NavLink to="/joinedEvents">
+                      <li className="hover:bg-secondary p-2 rounded-xl">
+                        Joined Events
+                      </li>
+                    </NavLink>
 
-
-                   <NavLink to='/manageEvents'>
-                    <li className="hover:bg-secondary p-2 rounded-xl">
-                      Manage Events
-                    </li>
-                   </NavLink>
+                    <NavLink to="/manageEvents">
+                      <li className="hover:bg-secondary p-2 rounded-xl">
+                        Manage Events
+                      </li>
+                    </NavLink>
                   </ul>
                 </div>
 
-              {/* button  */}
-              {buttons}
-            </div>
+                {/* button  */}
+                {buttons}
+              </div>
             </ul>
           </div>
         )}

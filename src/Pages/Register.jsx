@@ -5,72 +5,74 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 export default function Register() {
-  const { googleLogIn, createUser, setLoading,setUser,updateUser } = use(AuthContext);
+  const { googleLogIn, createUser, setLoading, setUser, updateUser } =
+    use(AuthContext);
   const navigate = useNavigate();
 
-      const handleRegister = (e) => {
-        e.preventDefault()
-        // console.log(e.target);
-        const displayName = e.target.name.value
-        const photoURL = e.target.photo.value
-        const email = e.target.email.value
-        const password = e.target.password.value
-        const passValidationRegEx = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+  const handleRegister = (e) => {
+    e.preventDefault();
+    // console.log(e.target);
+    const displayName = e.target.name.value;
+    const photoURL = e.target.photo.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const passValidationRegEx = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
-        if (!passValidationRegEx.test(password)) {
-
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "Password must contain at least 1 uppercase, 1 lowercase and 6 characters",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            return
-        }
-        createUser(email, password)
-            .then(res => {
-                const user = res.user
-                updateUser({
-                    displayName, photoURL
-                })
-                    .then(() => {
-                        setUser({ ...user, displayName, photoURL })
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Account created successfully!",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-
-                    })
-                    .catch(error => {
-                        const err = error.code
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "error",
-                            title: { err },
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        setUser(user)
-                    })
-            })
-            .catch(error => {
-                const err = error.code
-                Swal.fire({
-                    position: "top-end",
-                    icon: "error",
-                    title: `${err}`,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }).finally(()=>{navigate(`${location?.state ? location?.state : '/'}`),setLoading(false)})
-        
-
-
+    if (!passValidationRegEx.test(password)) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title:
+          "Password must contain at least 1 uppercase, 1 lowercase and 6 characters",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
     }
+    createUser(email, password)
+      .then((res) => {
+        const user = res.user;
+        updateUser({
+          displayName,
+          photoURL,
+        })
+          .then(() => {
+            setUser({ ...user, displayName, photoURL });
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Account created successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((error) => {
+            const err = error.code;
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: { err },
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            setUser(user);
+          });
+      })
+      .catch((error) => {
+        const err = error.code;
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${err}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .finally(() => {
+        navigate(`${location?.state ? location?.state : "/"}`),
+          setLoading(false);
+      });
+  };
 
   const handleGoogleSignUp = () => {
     googleLogIn()
@@ -78,13 +80,13 @@ export default function Register() {
         // console.log(res.user)
 
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Logged In successfully",
           showConfirmButton: false,
           timer: 2000,
         });
-        navigate(`${location?.state ? location?.state : '/'}`)
+        navigate(`${location?.state ? location?.state : "/"}`);
       })
       .catch((err) => {
         console.log(err);
@@ -94,9 +96,7 @@ export default function Register() {
   return (
     <div className="flex items-center justify-center min-h-screen  p-4">
       <div className="w-full max-w-md  rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center  mb-2">
-          Register Now!
-        </h1>
+        <h1 className="text-3xl font-bold text-center  mb-2">Register Now!</h1>
         <p className="text-center text-sm  mb-6">
           Already have an account?{" "}
           <Link to="/login">
@@ -109,10 +109,7 @@ export default function Register() {
         <form className="space-y-5" onSubmit={handleRegister}>
           {/* Name */}
           <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium  mb-1"
-            >
+            <label htmlFor="name" className="block text-sm font-medium  mb-1">
               Name
             </label>
             <input
@@ -144,10 +141,7 @@ export default function Register() {
 
           {/* Email */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium  mb-1"
-            >
+            <label htmlFor="email" className="block text-sm font-medium  mb-1">
               Email
             </label>
             <input
