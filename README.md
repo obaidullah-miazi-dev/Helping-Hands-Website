@@ -114,25 +114,25 @@ SweetAlert / Toast messages for login/register feedback
 
 ## Technologies Used  
 
-Category	Tools / Libraries  
+| Category | Tools/Library |  
 
-Frontend:	React.js, React Router DOM, Tailwind CSS, DaisyUI  
+| Frontend |	React.js, React Router DOM, Tailwind CSS, DaisyUI | 
 
-Animation:	Framer Motion  
+| Animation |	Framer Motion  |
 
-Date Picker:	React DatePicker  
+| Date Picker |	React DatePicker  |
 
-Backend:	Node.js, Express.js, MongoDB  
+| Backend |	Node.js, Express.js, MongoDB  |
 
-Authentication:	Firebase Authentication  
+| Authentication |	Firebase Authentication | 
 
-Alert/Toast:	SweetAlert2 
+| Alert/Toast |	SweetAlert2 |
 
-Hosting:	Firebase Hosting(Frontend),Vercel(Backend)  
+| Hosting |	Firebase Hosting(Frontend),Vercel(Backend) | 
 
-Icons:	Lucide React  
+| Icons |	Lucide React  |
 
-Axios/Hook:	Custom useAxios for API requests  
+| Axios/Hook |	Custom useAxios for API requests | 
 
 
 
