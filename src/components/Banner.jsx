@@ -30,13 +30,13 @@ const Banner = () => {
           ? { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
           : { opacity: 0.4, scale: 0.95, y: 20 }
        }
-        className="flex justify-between flex-col-reverse md:flex-row gap-12 mt-16">
+        className="flex justify-between flex-col-reverse xl:flex-row gap-12 mt-16">
           <div className="bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] flex-1 rounded-2xl p-5 flex-col flex relative">
             <motion.h1
             initial={{opacity:0,y:40}}
             animate={{opacity:1,y:0,transition:{duration:0.5,delay:0.3}}}
             
-            className="md:text-8xl text-5xl font-bold h-full inline text-primary mb-5 md:mb-0">
+            className="md:text-8xl text-5xl font-bold h-full inline text-primary mb-5 ">
               Together,
               we create positive change.
             </motion.h1>
@@ -48,7 +48,7 @@ const Banner = () => {
             </NavLink>
             <img src={logo} alt="" className="absolute bottom-16 right-0 opacity-10 hidden md:block"/>
           </div>
-          <div className="md:w-8/12 md:h-6/12 w-11/12 mx-auto rounded-2xl overflow-hidden flex-2">
+          <div className="md:w-8/12  h-auto w-11/12 mx-auto rounded-2xl overflow-hidden flex-2">
             <Swiper
               spaceBetween={30}
               centeredSlides={true}
