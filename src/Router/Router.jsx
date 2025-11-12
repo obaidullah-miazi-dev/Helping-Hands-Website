@@ -10,10 +10,12 @@ import JoinedEvents from "../Pages/JoinedEvents"
 import CreateEvent from "../Pages/CreateEvent"
 import ManageEvents from "../Pages/ManageEvents"
 import PrivateRoute from "../Provider/PrivateRoute"
+import Error404 from "../components/Error404"
 export const router =createBrowserRouter([
     {
         path:'/',
         Component: MainLayout,
+        errorElement: <Error404></Error404>,
         children:[
             {
                 index: true,
