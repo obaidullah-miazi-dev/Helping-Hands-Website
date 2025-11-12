@@ -172,7 +172,7 @@ const Navbar = () => {
               <div className="flex gap-2 items-center">
                 <ThemeToggle></ThemeToggle>
                 {/* profile pic with dropdown menu */}
-                <div className="dropdown dropdown-center">
+                {user&& (<div className="dropdown dropdown-center">
                   <div tabIndex={0} role="button" className="mt-3">
                     <img
                       title={user?.displayName}
@@ -203,7 +203,7 @@ const Navbar = () => {
                       </li>
                     </NavLink>
                   </ul>
-                </div>
+                </div>)}
 
                 {/* button  */}
                 {buttons}

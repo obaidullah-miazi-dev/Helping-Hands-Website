@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 
 const Features = () => {
   const cardRef = useRef(null);
-  const isInView = useInView(cardRef, 0.6);
+  const isInView = useInView(cardRef, 0.4);
   const features = [
     {
       icon: <Calendar className="w-8 h-8 text-primary" />,
