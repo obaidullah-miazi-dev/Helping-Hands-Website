@@ -114,7 +114,8 @@ SweetAlert / Toast messages for login/register feedback
 
 ## Technologies Used  
 
-| Category | Tools/Library |  
+| Category | Tools/Library | 
+|-----------|--------------------| 
 
 | Frontend |	React.js, React Router DOM, Tailwind CSS, DaisyUI | 
 
