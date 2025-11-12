@@ -97,6 +97,7 @@ const EventDetails = () => {
   return (
     <>
       <Container>
+        <title>{eventDetails?.title}</title>
         <div className="flex flex-col-reverse lg:flex-row gap-18 justify-center items-center mt-32">
           {/* content  */}
           <div className="space-y-3 flex-2">

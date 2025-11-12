@@ -150,6 +150,7 @@ const ManageEvents = () => {
 
   return (
     <Container>
+      <title>Manage Events</title>
       <h2
         className="md:text-5xl text-3xl text-primary font-bold
          border-l-8 border-primary pl-3 mt-16 mb-8"

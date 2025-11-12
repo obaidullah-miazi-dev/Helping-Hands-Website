@@ -87,123 +87,131 @@ export default function Register() {
       })
       .catch((err) => {
         Swal.fire({
-                position: "center",
-                icon: "error",
-                title: err,
-                showConfirmButton: false,
-                timer: 1500,
-              });
+          position: "center",
+          icon: "error",
+          title: err,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen  p-4">
-      <div className="w-full max-w-md  rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center  mb-2">Register Now!</h1>
-        <p className="text-center text-sm  mb-6">
-          Already have an account?{" "}
-          <Link to="/login">
-            <li className="text-primary hover:underline font-medium list-none inline">
-              Login Now
-            </li>
-          </Link>
-        </p>
+    <>
+      <title>Register</title>
+      <div className="flex items-center justify-center min-h-screen  p-4">
+        <div className="w-full max-w-md  rounded-2xl shadow-lg p-8">
+          <h1 className="text-3xl font-bold text-center  mb-2">
+            Register Now!
+          </h1>
+          <p className="text-center text-sm  mb-6">
+            Already have an account?{" "}
+            <Link to="/login">
+              <li className="text-primary hover:underline font-medium list-none inline">
+                Login Now
+              </li>
+            </Link>
+          </p>
 
-        <form className="space-y-5" onSubmit={handleRegister}>
-          {/* Name */}
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium  mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
-              required
-              placeholder="Your Name"
-            />
-          </div>
+          <form className="space-y-5" onSubmit={handleRegister}>
+            {/* Name */}
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium  mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
+                required
+                placeholder="Your Name"
+              />
+            </div>
 
-          {/* Image URL */}
-          <div>
-            <label
-              htmlFor="photoURL"
-              className="block text-sm font-medium  mb-1"
+            {/* Image URL */}
+            <div>
+              <label
+                htmlFor="photoURL"
+                className="block text-sm font-medium  mb-1"
+              >
+                Photo URL
+              </label>
+              <input
+                type="url"
+                id="photoURL"
+                name="photo"
+                placeholder="https://example.com/avatar.jpg"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium  mb-1"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
+                required
+                placeholder="Your Email"
+              />
+            </div>
+
+            {/* Password */}
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium  mb-1"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
+                required
+                placeholder="Your Password"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-gradient hover-eff text-white font-semibold py-3 rounded-lg cursor-pointer transition duration-200 shadow-md"
             >
-              Photo URL
-            </label>
-            <input
-              type="url"
-              id="photoURL"
-              name="photo"
-              placeholder="https://example.com/avatar.jpg"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
-            />
+              Register
+            </button>
+          </form>
+
+          <div className="mt-6 flex items-center justify-center">
+            <div className="border-t border-gray-300 grow"></div>
+            <span className="px-4 text-sm  ">OR</span>
+            <div className="border-t border-gray-300 grow"></div>
           </div>
 
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium  mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
-              required
-              placeholder="Your Email"
-            />
-          </div>
-
-          {/* Password */}
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium  mb-1"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
-              required
-              placeholder="Your Password"
-            />
-          </div>
-
-          {/* Submit Button */}
+          {/* Google Sign In */}
           <button
-            type="submit"
-            className="w-full bg-gradient hover-eff text-white font-semibold py-3 rounded-lg cursor-pointer transition duration-200 shadow-md"
+            onClick={handleGoogleSignUp}
+            type="button"
+            className="mt-6 w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-3 px-4 font-medium hover:bg-gray-50 transition cursor-pointer"
           >
-            Register
+            <img
+              src="https://www.google.com/favicon.ico"
+              alt="Google"
+              className="w-5 h-5"
+            />
+            Sign Up With Google
           </button>
-        </form>
-
-        <div className="mt-6 flex items-center justify-center">
-          <div className="border-t border-gray-300 grow"></div>
-          <span className="px-4 text-sm  ">OR</span>
-          <div className="border-t border-gray-300 grow"></div>
         </div>
-
-        {/* Google Sign In */}
-        <button
-          onClick={handleGoogleSignUp}
-          type="button"
-          className="mt-6 w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-3 px-4 font-medium hover:bg-gray-50 transition cursor-pointer"
-        >
-          <img
-            src="https://www.google.com/favicon.ico"
-            alt="Google"
-            className="w-5 h-5"
-          />
-          Sign Up With Google
-        </button>
       </div>
-    </div>
+    </>
   );
 }

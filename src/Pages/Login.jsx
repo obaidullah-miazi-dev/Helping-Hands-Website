@@ -62,6 +62,8 @@ export default function Login() {
   };
 
   return (
+    <>
+    <title>Login</title>
     <div className="flex items-center justify-center min-h-screen  p-4">
       <div className="w-full max-w-md rounded-2xl shadow-lg p-8">
         <h1 className="text-3xl font-bold text-center mb-4">Login Now!</h1>
@@ -140,5 +142,6 @@ export default function Login() {
         </button>
       </div>
     </div>
+    </>
   );
 }

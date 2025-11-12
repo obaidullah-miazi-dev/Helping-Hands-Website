@@ -19,7 +19,7 @@ const CompletedEvent = () => {
       .catch((error) => {
         setError(error);
       })
-      .finally(setLoading(false));
+      .finally(()=>setLoading(false));
   }, [axios]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const CompletedEvent = () => {
       .catch((error) => {
         setError(error.code);
       })
-      .finally(setLoading(false));
+      .finally(()=>setLoading(false));
   }, [axios]);
 
   if (loading) return <Loading></Loading>;

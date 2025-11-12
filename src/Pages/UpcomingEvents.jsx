@@ -73,6 +73,7 @@ const UpcomingEvents = () => {
   return (
     <>
       <Container>
+        <title>Upcoming Events</title>
         <div className="flex justify-between flex-col-reverse md:flex-row md:items-center mt-28 mb-12">
           <h2 className="md:text-5xl text-3xl text-primary font-bold border-l-8 border-primary pl-3 ">
             Upcoming Events
