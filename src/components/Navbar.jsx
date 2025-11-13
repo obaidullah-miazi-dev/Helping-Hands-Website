@@ -99,7 +99,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="w-full fixed right-0 top-0 z-50 bg-[#f3ffe5f5]">
+    <nav className="w-full fixed right-0 top-0 z-50">
       <Container>
         <div
           className="mx-auto flex justify-between items-center

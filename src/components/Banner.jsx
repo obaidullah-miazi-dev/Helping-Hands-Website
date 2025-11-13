@@ -30,7 +30,7 @@ const Banner = () => {
           ? { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
           : { opacity: 0.4, scale: 0.95, y: 20 }
        }
-        className="flex justify-between flex-col-reverse xl:flex-row gap-12 mt-32">
+        className="flex justify-between flex-col-reverse xl:flex-row gap-12 pt-32">
           <div className="bg-linear-to-b from-[#f3ffe6] to-[#e0ffbc] flex-1 rounded-2xl p-5 flex-col flex relative">
             <motion.h1
             initial={{opacity:0,y:40}}
