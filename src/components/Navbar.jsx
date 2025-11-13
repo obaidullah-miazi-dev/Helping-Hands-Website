@@ -49,19 +49,19 @@ const Navbar = () => {
   // all nav links is here
   const Links = (
     <>
-      <NavLink to="/">
+      <NavLink to="/" onClick={() => setOpen(!open)}>
         <li className="hover:text-primary transition cursor-pointer font-semibold text-lg">
           Home
         </li>
       </NavLink>
 
-      <NavLink to="/events">
+      <NavLink to="/events" onClick={() => setOpen(!open)}>
         <li className="hover:text-primary transition cursor-pointer font-semibold text-lg">
           Events
         </li>
       </NavLink>
 
-      <NavLink to="/upcomingEvents">
+      <NavLink to="/upcomingEvents" onClick={() => setOpen(!open)}>
         <li className="hover:text-primary transition cursor-pointer font-semibold text-lg">
           Upcoming Events
         </li>
@@ -99,7 +99,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="w-full">
+    <nav className="w-full fixed right-0 top-0 z-50 bg-[#f3ffe5f5]">
       <Container>
         <div
           className="mx-auto flex justify-between items-center
@@ -185,18 +185,18 @@ const Navbar = () => {
                     className="dropdown-content menu rounded-box bg-black text-white
                      z-10 w-52 p-3 font-semibold  shadow-sm  py-3"
                   >
-                    <NavLink to="/createEvent">
+                    <NavLink to="/createEvent" onClick={() => setOpen(!open)}>
                       <li className="hover:bg-secondary p-2 rounded-xl">
                         Create an Event
                       </li>
                     </NavLink>
-                    <NavLink to="/joinedEvents">
+                    <NavLink to="/joinedEvents" onClick={() => setOpen(!open)}>
                       <li className="hover:bg-secondary p-2 rounded-xl">
                         Joined Events
                       </li>
                     </NavLink>
 
-                    <NavLink to="/manageEvents">
+                    <NavLink to="/manageEvents" onClick={() => setOpen(!open)}>
                       <li className="hover:bg-secondary p-2 rounded-xl">
                         Manage Events
                       </li>
