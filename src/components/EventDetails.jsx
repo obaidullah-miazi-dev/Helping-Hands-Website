@@ -5,18 +5,21 @@ import Container from "./Container";
 import { Calendar, CircleCheckBig, CircleDot, MapPin } from "lucide-react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import Loading from "./Loading";
 
 const EventDetails = () => {
   const [eventDetails, setEventDetails] = useState(null);
   const { id } = useParams();
   const { user } = use(AuthContext);
   const [joinedEvent, setJoinedEvents] = useState([]);
+  const[loading,setLoading] = useState(true)
   const currentDate = new Date();
   const axios = useAxios();
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get(`/eventDetails/${id}`)
       .then((data) => setEventDetails(data.data))
@@ -28,10 +31,12 @@ const EventDetails = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-      });
+      })
+      .finally(()=>setLoading(false))
   }, [axios, id]);
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get(`/joinedEvents?email=${user?.email}`)
       .then((data) => setJoinedEvents(data.data))
@@ -43,7 +48,8 @@ const EventDetails = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      });
+      })
+      .finally(()=>setLoading(false))
   }, [axios, user]);
 
   const alreadyJoined = joinedEvent?.some((event) => event.event_id === id);
@@ -93,6 +99,8 @@ const EventDetails = () => {
       });
       });
   };
+
+  if(loading) return <Loading />
 
   return (
     <>
