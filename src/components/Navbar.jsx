@@ -120,7 +120,7 @@ const Navbar = () => {
             <ThemeToggle></ThemeToggle>
             {loading?<span className="loading loading-spinner loading-xl text-primary"></span>:<div>
                {user&& <div className="dropdown dropdown-end ">
-                  <div tabIndex={0} role="button" className="mt-3">
+                  <div tabIndex={0} role="button" className="mt-2">
                     <img
                       title={user?.displayName}
                       src={user?.photoURL}

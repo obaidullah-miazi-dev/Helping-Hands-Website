@@ -37,7 +37,7 @@ const Home = () => {
         title: "Clean & Green Neighborhood Mission",
         content:
           "A community-driven program dedicated to cleaning public areas such as roads, parks, and community centers while promoting a greener lifestyle. Participants plant trees, reduce plastic usage, and learn about waste management. The event helps build a cleaner environment and encourages community members to take pride in the place they live.",
-        src: "https://weewatch.com/wp-content/uploads/2024/04/blog-image-New-size-1.png",
+        src: "https://socialdhara.com/wp-content/uploads/2021/05/Untitled-design-1-1.jpg",
       }}
     />,
     <Card
