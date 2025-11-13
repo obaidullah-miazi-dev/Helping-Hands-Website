@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    if(loading) return <Loading />
+    // if(loading) return <Loading />
 
 
     const authData = {

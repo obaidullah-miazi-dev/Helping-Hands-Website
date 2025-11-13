@@ -9,7 +9,8 @@ import Swal from "sweetalert2";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext);
+  const { user, logOut,loading } = use(AuthContext);
+  
 
   const handleLogOut = () => {
     Swal.fire({
@@ -80,7 +81,7 @@ const Navbar = () => {
         </button>
       ) : (
         <div className="flex gap-3 items-center">
-          <Link to="/login">
+          {!loading&&<><Link to="/login">
             <button className="px-5 py-2.5 hover-eff cursor-pointer bg-gradient transition flex items-center gap-2 text-white font-semibold rounded-full">
               Login
             </button>
@@ -89,7 +90,7 @@ const Navbar = () => {
             <button className="px-5 py-2.5 hover-eff cursor-pointer bg-gradient transition flex items-center gap-2 text-white font-semibold rounded-full">
               Register
             </button>
-          </Link>
+          </Link></>}
         </div>
       )}
     </>
@@ -117,9 +118,8 @@ const Navbar = () => {
           {/* button  */}
           <div className="hidden md:flex items-center justify-center gap-4">
             <ThemeToggle></ThemeToggle>
-            {user && (
-              <div>
-                <div className="dropdown dropdown-end ">
+            {loading?<span className="loading loading-spinner loading-xl text-primary"></span>:<div>
+               {user&& <div className="dropdown dropdown-end ">
                   <div tabIndex={0} role="button" className="mt-3">
                     <img
                       title={user?.displayName}
@@ -150,9 +150,8 @@ const Navbar = () => {
                       </li>
                     </NavLink>
                   </ul>
-                </div>
-              </div>
-            )}
+                </div>}
+              </div>}
             {buttons}
           </div>
 
