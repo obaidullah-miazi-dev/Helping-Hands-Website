@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
-import { Users, Heart, ArrowRight } from "lucide-react";
+import { Users, ArrowRight } from "lucide-react";
 import logoIcon from '../assets/Images/Logo-Icon.png'
 
 export default function Register() {
@@ -41,7 +41,6 @@ export default function Register() {
           text: "Welcome to Helping Hands!",
           timer: 2000,
         });
-         navigate(`${location?.state ? location?.state : "/"}`);
       })
       .catch((err) => {
         Swal.fire({
@@ -52,7 +51,7 @@ export default function Register() {
           timer: 2000,
         });
       })
-      .finally(()=> setLoading(false))
+      .finally(()=>navigate(`${location?.state ? location?.state : "/"}`), setLoading(false))
   };
 
   const handleGoogleSignUp = () => {
@@ -64,12 +63,11 @@ export default function Register() {
           showConfirmButton: false,
           timer: 2000,
         });
-         navigate(`${location?.state ? location?.state : "/"}`);
       })
       .catch((err) => {
         Swal.fire({ icon: "error", title: err.message, timer: 1500 });
       })
-      .finally(()=> setLoading(false))
+      .finally(()=>navigate(`${location?.state ? location?.state : "/"}`), setLoading(false))
   };
 
   return (

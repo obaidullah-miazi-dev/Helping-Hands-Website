@@ -8,7 +8,7 @@ import {  ArrowRight, Sparkles } from "lucide-react";
 import logoIcon from '../assets/Images/Logo-Icon.png'
 
 export default function Login() {
-  const { googleLogIn, signInUser } = useContext(AuthContext);
+  const { googleLogIn, signInUser,setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,7 +26,6 @@ export default function Login() {
           showConfirmButton: false,
           timer: 2000,
         });
-        navigate(location?.state || "/");
       })
       .catch((error) => {
         Swal.fire({
@@ -36,7 +35,8 @@ export default function Login() {
           showConfirmButton: false,
           timer: 2000,
         });
-      });
+      })
+      .finally(()=>navigate(`${location?.state ? location?.state : "/"}`), setLoading(false))
   };
 
   const handleGoogleSignIn = () => {
@@ -49,7 +49,6 @@ export default function Login() {
           showConfirmButton: false,
           timer: 2000,
         });
-        navigate(location?.state || "/");
       })
       .catch((err) => {
         Swal.fire({
@@ -59,7 +58,8 @@ export default function Login() {
           showConfirmButton: false,
           timer: 1500,
         });
-      });
+      })
+      .finally(()=>navigate(`${location?.state ? location?.state : "/"}`), setLoading(false))
   };
 
   return (
