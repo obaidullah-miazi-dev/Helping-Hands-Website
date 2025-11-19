@@ -128,6 +128,11 @@ SweetAlert / Toast messages for login/register feedback
 
 
 
+## Home Page of This Project
+![Screenshot](./src/assets/Images/helping-hands-home.png)
+
+
+
 ## Running the “Helping Hands” Project Locally  
 
 This guide explains how to run both the Frontend and Backend of the Helping Hands project on a local machine.  
