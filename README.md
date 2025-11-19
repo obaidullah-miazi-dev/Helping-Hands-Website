@@ -128,63 +128,68 @@ SweetAlert / Toast messages for login/register feedback
 
 
 
-**Running the “Helping Hands” Project Locally**
+## Running the “Helping Hands” Project Locally  
 
-This guide explains how to run both the Frontend and Backend of the Helping Hands project on a local machine.
+This guide explains how to run both the Frontend and Backend of the Helping Hands project on a local machine.  
 
-1. Clone the Repositories
-Frontend
-git clone https://github.com/obaidullah-miazi-dev/Helping-Hands-Website
+1. Clone the Repositories  
+Frontend  
+git clone https://github.com/obaidullah-miazi-dev/Helping-Hands-Website  
 
-Backend
-git clone https://github.com/obaidullah-miazi-dev/Helping-Hands-Server
+Backend  
+git clone https://github.com/obaidullah-miazi-dev/Helping-Hands-Server  
 
-Backend Setup (Node.js, Express.js, MongoDB)
-2. Navigate to the backend folder
+Backend Setup (Node.js, Express.js, MongoDB)  
+
+2. Navigate to the backend folder  
 cd Helping-Hands-Server
 
-3. Install dependencies
+3. Install dependencies  
 npm install
 
-4. Create a .env file
+4. Create a .env file  
 
-Inside the backend folder, create a file named .env and add the following:
+Inside the backend folder, create a file named .env and add the following:  
 
-DB_USER=your_mongodb_username
-DB_PASS=your_mongodb_password
-ACCESS_TOKEN_SECRET=your_secret_key
+DB_USER=your_mongodb_username  
+
+DB_PASS=your_mongodb_password  
+
+ACCESS_TOKEN_SECRET=your_secret_key  
+
 PORT=5000
 
 
-Notes:
+Notes:  
 
-Use your own MongoDB Atlas credentials.
+Use your own MongoDB Atlas credentials.  
 
-ACCESS_TOKEN_SECRET can be any random string.
+ACCESS_TOKEN_SECRET can be any random string.    
 
 5. Start the backend server
-npm run start
+npm run start  
 
-
-The backend will run at:
+The backend will run at:  
 
 http://localhost:5000
 
 Frontend Setup (React, Tailwind CSS, Firebase)
-6. Navigate to the frontend folder
-cd ../Helping-Hands-Website
+6. Navigate to the frontend folder  
 
-7. Install dependencies
+cd ../Helping-Hands-Website
+  
+
+7. Install dependencies  
 npm install
 
-8. Add Firebase configuration
+8. Add Firebase configuration  
 
-Create the following file:
+Create the following file:  
 
 src/firebase/firebase.config.js
+  
 
-
-Paste your Firebase project configuration:
+Paste your Firebase project configuration:  
 
 export const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
@@ -194,34 +199,35 @@ export const firebaseConfig = {
   messagingSenderId: "YOUR_SENDER_ID",
   appId: "YOUR_APP_ID"
 };
-
-
+  
 (You can find these credentials in Firebase Console > Project Settings > SDK Setup)
+  
 
-9. Create a .env.local file
+9. Create a .env.local file  
 
-Inside the frontend folder, create:
+Inside the frontend folder, create:  
 
 .env.local
+  
+
+Add this line:  
+
+VITE_API_URL=http://localhost:5000  
 
 
-Add this line:
-
-VITE_API_URL=http://localhost:5000
-
-10. Start the frontend development server
+10. Start the frontend development server  
 npm run dev
 
 
-The frontend will run at:
+The frontend will run at:  
 
-http://localhost:5173
+http://localhost:5173  
 
-Project is Ready
+Project is Ready  
 
-Your Helping Hands project should now be running locally:
+Your Helping Hands project should now be running locally:  
 
-Frontend: http://localhost:5173
+Frontend: http://localhost:5173  
 
 Backend: http://localhost:5000
 
